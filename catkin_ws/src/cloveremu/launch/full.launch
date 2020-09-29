@@ -1,0 +1,10 @@
+<launch>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+    <arg name="topics_glob" default="" />
+    <arg name="services_glob" default="" />
+    <arg name="params_glob" default="" />
+  </include>
+  <node name="emu" pkg="cloveremu" type="emu">
+  
+  </node>
+</launch>

@@ -8,7 +8,7 @@ interface Msg {
 export function Message(props: { msg: Msg; pad?: string }) {
   let res: React.ReactElement[] = []
   let msg = props.msg
-  let pad = props.pad ? props.pad : ''
+  let pad = props.pad ?? ''
 
   for (let key in msg) {
     let child = <span>UNKNOWN TYPE</span>

@@ -99,4 +99,13 @@ export async function getTopic(topicName: string): Promise<roslib.Topic> {
   })
 }
 
+export async function getService(serviceName: string): Promise<roslib.Service> {
+  let serviceType = await getServiceType(serviceName)
+  return new roslib.Service({
+    ros,
+    serviceType,
+    name: serviceName,
+  })
+}
+
 export { ros, roslib }

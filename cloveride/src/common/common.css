@@ -15,3 +15,19 @@ button {
 button:hover {
   background-color: var(--vscode-button-hoverBackground);
 }
+
+input {
+  background-color: var(--vscode-input-background);
+  color: var(--vscode-input-foreground);
+
+  border: none;
+  height: 24px;
+
+}
+
+input:focus {
+  outline-color: var(--vscode-focusBorder);
+  outline-width: 1px;
+  outline-style: solid;
+  outline-offset: -1px;
+}
