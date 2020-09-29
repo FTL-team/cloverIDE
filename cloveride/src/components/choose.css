@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  user-select: none;
+  font-weight: bold;
+  display: block;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.btn {
+  margin: 4px;
+}
+
+.value {
+  font-family: var(--vscode-editor-font-family);
+  white-space: pre;
+}

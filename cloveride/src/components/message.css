@@ -1,0 +1,19 @@
+.key {
+  font-weight: bold;
+}
+
+.str {
+  color: var(--vscode-debugTokenExpression-string);
+}
+
+.num {
+  color: var(--vscode-debugTokenExpression-number);
+}
+
+.bool {
+  color: var(--vscode-debugTokenExpression-boolean);
+}
+
+.root {
+  white-space: pre;
+}

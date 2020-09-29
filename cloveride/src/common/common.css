@@ -1,0 +1,17 @@
+body {
+  font-size: var(--vscode-editor-font-size);
+  margin: 5px;
+}
+
+button {
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  border: none;
+  padding: 4px 8px;
+  outline: none;
+  user-select: none;
+}
+
+button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+}

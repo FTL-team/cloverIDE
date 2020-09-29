@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+import rospy
+import random
+import cv2
+import cv_bridge
+import numpy as np
+
+from std_msgs.msg import String
+from sensor_msgs.msg import Image
+from cv_bridge import CvBridge, CvBridgeError
+from cloveremu.msg import ExampleTopicMsg, IFBS
+from cloveremu.srv import ExampleServiceSrv, ExampleServiceSrvResponse
+
+strings = ["WOW", "MAGIC", "MAGIC_WOW"]        # Strings to choose from IFBS string
+
+
+# Generates random IFBS
+def gen_random_IFBS():
+  return IFBS(
+      random.randint(0, 255),
+      random.random() * 16, random.choice([True, False]),
+      random.choice(strings)
+  )
+
+
+# Generate array of ifbs with length from 1 to 3
+def gen_random_length_IFBS_array():
+  return [gen_random_IFBS() for i in range(random.randint(1, 3))]
+
+
+def service_handler(req):
+  return ExampleServiceSrvResponse(gen_random_IFBS(), req.int_param * 2)
+
+
+example_service = rospy.Service(
+    '/example/service', ExampleServiceSrv, service_handler
+)
+example_topic = rospy.Publisher(
+    '/example/topic', ExampleTopicMsg, queue_size=10
+)
+example_img_topic = rospy.Publisher("/example/image", Image, queue_size=10)
+
+rospy.init_node('emu', anonymous=True)
+rate = rospy.Rate(20)
+bridge = CvBridge()
+
+# Initial example topic values
+example_topic_example_obj = gen_random_IFBS()
+example_topic_example_arr = [
+    gen_random_IFBS() for i in range(random.randint(1, 3))
+]
+example_topic_change_counter = 10
+example_topic_chnging_num = 0
+
+while not rospy.is_shutdown():
+  # Update test topic values
+  if example_topic_change_counter == 20:
+    example_topic_change_counter = 0
+    obj = gen_random_IFBS()
+    arr = [gen_random_IFBS() for i in range(random.randint(1, 3))]
+  else:
+    example_topic_change_counter += 1
+
+  # Publish test topic
+  example_topic_chnging_num += 1
+  example_topic.publish(
+      example_topic_example_obj, example_topic_example_arr,
+      example_topic_chnging_num
+  )
+
+  example_img = np.ones((480, 640, 3), dtype=np.uint8) * 255   # Create white image
+  cv2.rectangle(
+      example_img, (20, 20), (40, 40), (255, 0, 0)
+  )                                                            # Draw red rect on it
+  example_img_topic.publish(
+      bridge.cv2_to_imgmsg(example_img, "bgr8")
+  )                                                            # Publish it
+
+  rate.sleep()

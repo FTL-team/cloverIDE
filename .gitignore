@@ -1,0 +1,22 @@
+# Common
+**/node_modules
+**/.vscode-test
+**/*.vsix
+**/yarn.lock
+**/package-lock.json
+
+# ROS
+**/catkin_ws/build
+**/catkin_ws/devel
+**/catkin_ws/.catkin_workspace
+**/catkin_ws/src/CMakeLists.txt
+
+# Coder
+coder/ext
+coder/userdata
+coder/machindeid
+
+# Extension
+cloveride/out
+
+
