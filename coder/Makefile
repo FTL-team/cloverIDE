@@ -1,0 +1,25 @@
+
+CODER=code-server  --config ./config.yaml --user-data-dir ./userdata --extensions-dir ext
+
+.PHONY: run clean load_data install_ext
+
+
+clean:
+		rm -rf ext 
+		rm -rf userdata 
+
+load_data: 
+		rm -rf userdata
+		cp -r data userdata
+
+install_ext: 
+		$(CODER) --install-extension ms-python.python
+		$(CODER) --install-extension redhat.vscode-xml
+		$(CODER) --install-extension dotjoshjohnson.xml
+		$(CODER) --install-extension DavidAnson.vscode-markdownlint
+		$(CODER) --install-extension ms-vscode.cpptools
+		$(CODER) --install-extension ../cloveride/cloveride-*.vsix
+
+
+run: 
+		$(CODER)
