@@ -5,7 +5,7 @@ interface Msg {
   [key: string]: string | number | boolean | Msg
 }
 
-export function Message(props: { msg: Msg; pad?: string }) {
+export default function Message(props: { msg: Msg; pad?: string }) {
   const result: React.ReactElement[] = []
   const message = props.msg
   const pad = props.pad ?? ''

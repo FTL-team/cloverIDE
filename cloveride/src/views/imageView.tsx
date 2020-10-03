@@ -1,12 +1,9 @@
-import * as ros from '../common/ros'
 import React, { useState } from 'react'
 import { render } from 'react-dom'
-import { Choose } from '../components/choose'
-import '../common/common.css'
-
-function Topic(props: { topic: string }) {
-  return <img src={'http://localhost:8080/stream?topic=' + props.topic} />
-}
+import Choose from '../components/Choose'
+import ImageTopic from '../components/ImageTopic'
+import { getTopicsForType } from '../ros/topic'
+import '../common.css'
 
 function App() {
   const [topic, setTopic] = useState<null | string>(null)
@@ -17,14 +14,14 @@ function App() {
         text="Topic"
         value={topic}
         getVariants={async () => {
-          const topics = await ros.getTopicsForType('sensor_msgs/Image')
+          const topics = await getTopicsForType('sensor_msgs/Image')
           return topics.map((topics) => topics.name)
         }}
         onChange={(newTopic) => {
           setTopic(newTopic)
         }}
       />
-      {topic && <Topic topic={topic} />}
+      {topic && <ImageTopic topic={topic} />}
     </>
   )
 }

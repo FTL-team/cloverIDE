@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './choose.css'
-import { quickPick } from '../common/vscode'
+import { quickPick } from '../vscode'
 
 type ChooseProps = {
   text: string
@@ -9,7 +9,7 @@ type ChooseProps = {
   onChange: (val: string | null) => void
 }
 
-export function Choose(props: ChooseProps) {
+export default function Choose(props: ChooseProps) {
   return (
     <div className={style.root}>
       <span className={style.text}>{props.text}: </span>

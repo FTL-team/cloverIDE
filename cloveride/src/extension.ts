@@ -1,3 +1,5 @@
+/* eslint max-lines: ["error", 256] */
+
 import * as vscode from 'vscode'
 
 interface UIPanelConfig {
