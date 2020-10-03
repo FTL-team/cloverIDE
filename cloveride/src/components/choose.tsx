@@ -15,12 +15,13 @@ export function Choose(props: ChooseProps) {
       <span className={style.text}>{props.text}: </span>
       <span className={style.value}>{props.value ? props.value : ''}</span>
       <button
+        type="button"
         className={style.btn}
         onClick={async () => {
           props.onChange(null)
-          let variants = await props.getVariants()
-          let res = await quickPick(variants)
-          props.onChange(res[0])
+          const variants = await props.getVariants()
+          const result = await quickPick(variants)
+          props.onChange(result[0])
         }}
       >
         Choose

@@ -7,9 +7,9 @@ interface UIPanelConfig {
 }
 
 class UIPanel {
-  private cfg: UIPanelConfig
-  private uiPath: vscode.Uri
-  private panel: vscode.WebviewPanel
+  private readonly cfg: UIPanelConfig
+  private readonly uiPath: vscode.Uri
+  private readonly panel: vscode.WebviewPanel
 
   private functions: { [a: string]: (...any: any[]) => void | Promise<any> }
 
@@ -23,7 +23,7 @@ class UIPanel {
       {
         enableScripts: true,
         localResourceRoots: [this.uiPath],
-        retainContextWhenHidden: true,
+        retainContextWhenHidden: true
       }
     )
 
@@ -31,38 +31,63 @@ class UIPanel {
 
     this.functions = {}
 
-    this.panel.webview.onDidReceiveMessage((msg) => {
-      if (msg.type == 'call') {
-        let id = msg.id
-        if (this.functions[msg.name]) {
-          let maybePromise = this.functions[msg.name](...msg.args)
+    this.panel.webview.onDidReceiveMessage((message) => {
+      if (message.type === 'call') {
+        const id = message.id
+        if (this.functions[message.name]) {
+          const maybePromise = this.functions[message.name](...message.args)
           if (maybePromise && maybePromise instanceof Promise) {
-            maybePromise.then((...res) => {
-              this.panel.webview.postMessage({
-                id,
-                type: 'ok',
-                res,
-              })
-            })
+            maybePromise.then(
+              (...result) => {
+                this.panel.webview
+                  .postMessage({
+                    id,
+                    type: 'ok',
+                    res: result
+                  })
+                  .then(
+                    () => 0,
+                    (error) => console.warn(error)
+                  )
+              },
+              (error) => console.warn(error)
+            )
           } else {
-            this.panel.webview.postMessage({
-              id,
-              type: 'ok',
-            })
+            this.panel.webview
+              .postMessage({
+                id,
+                type: 'ok'
+              })
+              .then(
+                () => 0,
+                (error) => console.warn(error)
+              )
           }
         } else {
-          this.panel.webview.postMessage({
-            id,
-            type: 'error',
-            error: 'Command not found',
-          })
+          this.panel.webview
+            .postMessage({
+              id,
+              type: 'error',
+              error: 'Command not found'
+            })
+            .then(
+              () => 0,
+              (error) => console.warn(error)
+            )
         }
       }
     })
 
-    this.registerFunction('quickPick', (items: string[]) => {
+    this.registerFunction('quickPick', async (items: string[]) => {
       return vscode.window.showQuickPick(items) as Promise<string | undefined>
     })
+  }
+
+  public registerFunction(
+    name: string,
+    func: (...args: any[]) => void | Promise<any>
+  ): void {
+    this.functions[name] = func
   }
 
   private getWebviewContent() {
@@ -84,42 +109,38 @@ class UIPanel {
     <body>
         <div id="root"></div>
 
-        <script src="${scriptWebUri}"></script>
+        <script src="${scriptWebUri.toString()}"></script>
     </body>
     </html>`
-  }
-
-  public registerFunction(
-    name: string,
-    func: (...args: any[]) => void | Promise<any>
-  ): void {
-    this.functions[name] = func
   }
 }
 
 export function activate(context: vscode.ExtensionContext) {
-  let disposable = vscode.commands.registerCommand('cloveride.topicVis', () => {
-    let panel = new UIPanel(
-      {
-        name: 'Topic visualization',
-        script: 'topicVisView.js',
-        type: 'topicVis',
-      },
-      context
-    )
-    console.log('Panel created', panel)
-  })
+  const disposable = vscode.commands.registerCommand(
+    'cloveride.topicVis',
+    () => {
+      const panel = new UIPanel(
+        {
+          name: 'Topic visualization',
+          script: 'topicVisView.js',
+          type: 'topicVis'
+        },
+        context
+      )
+      console.log('Panel created', panel)
+    }
+  )
 
   context.subscriptions.push(disposable)
 
-  let disposable2 = vscode.commands.registerCommand(
+  const disposable2 = vscode.commands.registerCommand(
     'cloveride.imageVis',
     () => {
-      let panel = new UIPanel(
+      const panel = new UIPanel(
         {
           name: 'Image topic visualization',
           script: 'imageVisView.js',
-          type: 'imageVis',
+          type: 'imageVis'
         },
         context
       )
@@ -128,14 +149,14 @@ export function activate(context: vscode.ExtensionContext) {
   )
   context.subscriptions.push(disposable2)
 
-  let disposable3 = vscode.commands.registerCommand(
+  const disposable3 = vscode.commands.registerCommand(
     'cloveride.serviceCaller',
     () => {
-      let panel = new UIPanel(
+      const panel = new UIPanel(
         {
           name: 'Service caller',
           script: 'serviceCallerView.js',
-          type: 'serviceCaller',
+          type: 'serviceCaller'
         },
         context
       )
@@ -145,4 +166,6 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable3)
 }
 
-export function deactivate() {}
+export function deactivate() {
+  console.log('Deactivating')
+}

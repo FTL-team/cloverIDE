@@ -1,35 +1,33 @@
 const vscode = window.acquireVsCodeApi()
-console.log(vscode)
+const waitingResult: Map<number, (msg: any) => void> = new Map()
 
-let waitingResult: Map<number, (msg: any) => void> = new Map()
-
-export function call(name: string, ...args: any[]) {
-  let id = Math.random() * 65535
+export async function call(name: string, ...args: any[]) {
+  const id = Math.random() * 65535
 
   return new Promise((resolve, reject) => {
-    waitingResult.set(id, (msg) => {
-      if (msg.type == 'ok') {
-        resolve(msg.res)
+    waitingResult.set(id, (message) => {
+      if (message.type === 'ok') {
+        resolve(message.res)
       } else {
-        reject(msg.error)
+        reject(message.error)
       }
     })
-    
+
     vscode.postMessage({
       type: 'call',
       id,
       name,
-      args,
+      args
     })
   })
 }
 
 window.addEventListener('message', (event) => {
-  const msg = event.data 
-  let handler = waitingResult.get(msg.id) 
+  const message = event.data
+  const handler = waitingResult.get(message.id)
   if (handler) {
-    handler(msg)
-    waitingResult.delete(msg.id)
+    handler(message)
+    waitingResult.delete(message.id)
   }
 })
 

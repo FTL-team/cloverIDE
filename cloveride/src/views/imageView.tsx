@@ -9,7 +9,7 @@ function Topic(props: { topic: string }) {
 }
 
 function App() {
-  let [topic, setTopic] = useState<null | string>(null)
+  const [topic, setTopic] = useState<null | string>(null)
 
   return (
     <>
@@ -17,8 +17,8 @@ function App() {
         text="Topic"
         value={topic}
         getVariants={async () => {
-          let topics = await ros.getTopicsForType('sensor_msgs/Image')
-          return topics.map((e) => e.name)
+          const topics = await ros.getTopicsForType('sensor_msgs/Image')
+          return topics.map((topics) => topics.name)
         }}
         onChange={(newTopic) => {
           setTopic(newTopic)
@@ -29,4 +29,4 @@ function App() {
   )
 }
 
-render(<App />, document.getElementById('root'))
+render(<App />, document.querySelector('#root'))

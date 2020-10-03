@@ -1,5 +1,4 @@
 import * as ros from '../common/ros'
-// import * as vscode from '../common/vscode'
 import React, { useState, useEffect } from 'react'
 import { render } from 'react-dom'
 import { Choose } from '../components/choose'
@@ -7,26 +6,29 @@ import { Message } from '../components/message'
 import '../common/common.css'
 
 function Topic(props: { topic: string }) {
-  let [msg, setMsg] = useState({})
+  const [message, setMessage] = useState({})
   useEffect(() => {
     let rosTopic: null | ros.roslib.Topic = null
     let stopped = false
-    ros.getTopic(props.topic).then((newRosTopic) => {
-      if (!stopped) {
-        rosTopic = newRosTopic
-        rosTopic.subscribe((newMsg) => setMsg(newMsg))
-      }
-    })
+    ros.getTopic(props.topic).then(
+      (newRosTopic) => {
+        if (!stopped) {
+          rosTopic = newRosTopic
+          rosTopic.subscribe((newMessage) => setMessage(newMessage))
+        }
+      },
+      (error) => console.warn(error)
+    )
     return () => {
       if (rosTopic) rosTopic.unsubscribe()
       stopped = true
     }
   }, [props.topic])
-  return <Message msg={msg}/>
+  return <Message msg={message} />
 }
 
 function App() {
-  let [topic, setTopic] = useState<null | string>(null)
+  const [topic, setTopic] = useState<null | string>(null)
 
   return (
     <>
@@ -34,8 +36,8 @@ function App() {
         text="Topic"
         value={topic}
         getVariants={async () => {
-          let topics = await ros.getTopics()
-          return topics.map((e) => e.name)
+          const topics = await ros.getTopics()
+          return topics.map((topic) => topic.name)
         }}
         onChange={(newTopic) => {
           setTopic(newTopic)
@@ -46,5 +48,4 @@ function App() {
   )
 }
 
-render(<App />, document.getElementById('root'))
-
+render(<App />, document.querySelector('#root'))

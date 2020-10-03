@@ -58,13 +58,63 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "css-loader": "^4.2.2",
+    "eslint-config-xo-react": "^0.23.0",
+    "eslint-config-xo-typescript": "^0.33.0",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "roslib": "^1.1.0",
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.3",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "xo": "^0.33.1"
+  },
+  "xo": {
+    "extends": [
+      "xo-react",
+      "xo-typescript"
+    ],
+    "space": true,
+    "semi": false,
+    "prettier": true,
+    "env": [
+      "node",
+      "browser"
+    ],
+    "rules": {
+      "import/no-unassigned-import": 0,
+      "unicorn/filename-case": [
+        "error",
+        {
+          "cases": {
+            "camelCase": true,
+            "pascalCase": true
+          }
+        }
+      ],
+      "react/function-component-definition": [
+        "error",
+        {
+          "namedComponents": "function-declaration"
+        }
+      ],
+
+      "@typescript-eslint/no-loop-func": [
+        0,
+        {}
+      ],
+      "no-alert": 0,
+      "react/prop-types": 0
+    }
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "trailingComma": "none"
   },
   "repository": {
     "url": "https://github.com/FTL-team/cloverIDE"

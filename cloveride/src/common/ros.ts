@@ -1,6 +1,6 @@
-import * as roslib from 'roslib'
+import roslib from 'roslib'
 
-let ros = new roslib.Ros({})
+const ros = new roslib.Ros({})
 
 ros.on('error', function (error) {
   console.error(error)
@@ -26,16 +26,16 @@ export interface TopicInfo {
   type: string
 }
 
-export function getTopics(): Promise<TopicInfo[]> {
+export async function getTopics(): Promise<TopicInfo[]> {
   return new Promise((resolve) => {
-    ros.getTopics((res) => {
-      let correctRes = (res as unknown) as CorrectTopics
+    ros.getTopics((response) => {
+      const correctResponse = (response as unknown) as CorrectTopics
 
       resolve(
-        correctRes.topics.map((e, i) => {
+        correctResponse.topics.map((name, i) => {
           return {
-            name: e,
-            type: correctRes.types[i],
+            name,
+            type: correctResponse.types[i]
           }
         })
       )
@@ -43,22 +43,22 @@ export function getTopics(): Promise<TopicInfo[]> {
   })
 }
 
-export function getServices(): Promise<string[]> {
+export async function getServices(): Promise<string[]> {
   return new Promise((resolve) => {
-    ros.getServices((res) => {
-      resolve(res)
+    ros.getServices((response) => {
+      resolve(response)
     })
   })
 }
 
-export function getTopicsForType(type: string): Promise<TopicInfo[]> {
+export async function getTopicsForType(type: string): Promise<TopicInfo[]> {
   return new Promise((resolve) => {
-    ros.getTopicsForType(type, (res) => {
+    ros.getTopicsForType(type, (result) => {
       resolve(
-        res.map((e) => {
+        result.map((name) => {
           return {
-            name: e,
-            type,
+            name,
+            type
           }
         })
       )
@@ -66,7 +66,7 @@ export function getTopicsForType(type: string): Promise<TopicInfo[]> {
   })
 }
 
-export function getTopicType(topicName: string): Promise<string> {
+export async function getTopicType(topicName: string): Promise<string> {
   return new Promise((resolve) => {
     ros.getTopicType(topicName, (type) => {
       resolve(type)
@@ -74,7 +74,7 @@ export function getTopicType(topicName: string): Promise<string> {
   })
 }
 
-export function getServiceType(serviceName: string): Promise<string> {
+export async function getServiceType(serviceName: string): Promise<string> {
   return new Promise((resolve) => {
     ros.getServiceType(serviceName, (type) => {
       resolve(type)
@@ -82,29 +82,31 @@ export function getServiceType(serviceName: string): Promise<string> {
   })
 }
 
-export function getServiceRequestDetails(serviceName: string): Promise<string> {
+export async function getServiceRequestDetails(
+  serviceName: string
+): Promise<string> {
   return new Promise((resolve) => {
-    ros.getServiceRequestDetails(serviceName, (res) => {
-      resolve(res)
+    ros.getServiceRequestDetails(serviceName, (response) => {
+      resolve(response)
     })
   })
 }
 
 export async function getTopic(topicName: string): Promise<roslib.Topic> {
-  let topicType = await getTopicType(topicName)
+  const topicType = await getTopicType(topicName)
   return new roslib.Topic({
     ros,
     name: topicName,
-    messageType: topicType,
+    messageType: topicType
   })
 }
 
 export async function getService(serviceName: string): Promise<roslib.Service> {
-  let serviceType = await getServiceType(serviceName)
+  const serviceType = await getServiceType(serviceName)
   return new roslib.Service({
     ros,
     serviceType,
-    name: serviceName,
+    name: serviceName
   })
 }
 
