@@ -21,21 +21,7 @@ export const allBuiltinTypes = new Set([
   ...builtinStringTypes
 ])
 
-export function stringToType(input: string, fieldtype: string) {
-  if (builtinNumberTypes.includes(fieldtype)) {
-    const number = Number.parseFloat(input) ?? 0
-    if (Number.isNaN(number)) return 0
-    return number
-  }
-
-  if (builtinStringTypes.includes(fieldtype)) {
-    return input
-  }
-
-  if (builtinBooleanTypes.includes(fieldtype)) {
-    const string = input.toLowerCase()
-    return string.startsWith('t') || string[1] === 'y'
-  }
-
-  return ''
+export type RosJsType = string | boolean | number
+export interface RosJsMessage {
+  [key: string]: RosJsType | RosJsMessage
 }

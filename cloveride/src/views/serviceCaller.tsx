@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
 import { getServices } from '../ros/service'
@@ -21,7 +21,9 @@ function App() {
           setService(newService)
         }}
       />
-      {service && <Service service={service} />}
+      <Suspense fallback={<h1>Loading...</h1>}>
+        {service && <Service service={service} />}
+      </Suspense>
     </>
   )
 }

@@ -22,7 +22,7 @@ input {
 
   border: none;
   height: 24px;
-
+  margin: 2px;
 }
 
 input:focus {

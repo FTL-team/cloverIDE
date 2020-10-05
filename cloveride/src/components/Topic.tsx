@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Message from './Message'
+import Message from './message/Message'
 import usePromise from 'react-promise-suspense'
 import { getTopic, Topic as RosTopic } from '../ros/topic'
 
