@@ -5,7 +5,7 @@ import { quickPick } from '../vscode'
 type ChooseProps = {
   text: string
   value: string | null
-  getVariants: () => Promise<string[]>
+  getVariants: () => Promise<string[]> | string[]
   onChange: (val: string | null) => void
 }
 

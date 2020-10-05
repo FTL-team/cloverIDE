@@ -1,29 +1,33 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
 import Topic from '../components/Topic'
-import { getTopics } from '../ros/topic'
+import { getTopics, TopicInfo } from '../ros/topic'
 import '../common.css'
+import usePromise from 'react-promise-suspense'
 
 function App() {
   const [topic, setTopic] = useState<null | string>(null)
+  const topics = usePromise(getTopics, []) as TopicInfo[]
 
   return (
     <>
       <Choose
         text="Topic"
         value={topic}
-        getVariants={async () => {
-          const topics = await getTopics()
-          return topics.map((topic) => topic.name)
-        }}
-        onChange={(newTopic) => {
-          setTopic(newTopic)
-        }}
+        getVariants={() => topics.map((topic) => topic.name)}
+        onChange={(newTopic) => setTopic(newTopic)}
       />
-      {topic && <Topic topic={topic} />}
+      <Suspense fallback={<h1>Loading...</h1>}>
+        {topic && <Topic topic={topic} />}
+      </Suspense>
     </>
   )
 }
 
-render(<App />, document.querySelector('#root'))
+render(
+  <Suspense fallback={<h1>Loading...</h1>}>
+    <App />
+  </Suspense>,
+  document.querySelector('#root')
+)

@@ -63,6 +63,7 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-promise-suspense": "^0.3.3",
     "roslib": "^1.1.0",
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.3",
@@ -105,7 +106,10 @@
       ],
       "no-alert": 0,
       "react/prop-types": 0,
-      "max-lines": [2, 128]
+      "max-lines": [
+        2,
+        128
+      ]
     },
     "ignore": [
       "src/ros/roslib.d.ts"
