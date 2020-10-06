@@ -21,7 +21,9 @@ ros.on('close', function () {
   console.log('Disconnected')
 })
 
-ros.connect('ws://localhost:9090')
+const host =
+  process.env.NODE_ENV == 'development' ? 'localhost' : location.hostname
+ros.connect(`ws://${host}:9090`)
 
 function rosPromisifyNoArgs<R>(
   func: (
