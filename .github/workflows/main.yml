@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v2.2.0
         with:
           name: cloveride.deb
-          key: coder/deb.deb
+          path: coder/deb.deb
