@@ -18,6 +18,7 @@ jobs:
         run: |
           sudo npm install -g yarn
           sudo yarn global add vsce
+          curl -fsSL https://code-server.dev/install.sh | sh
    
    
       - name: Install extension dependencies 
@@ -33,3 +34,17 @@ jobs:
         with:
           name: cloveride.vsix
           path: cloveride/cloveride-0.0.1.vsix
+      
+      - name: Build cloveride
+        working-directory: coder
+        run: make build
+      
+      - name: Build deb of cloveride
+        working-directory: coder
+        run: make deb
+    
+      - name: Upload deb
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: cloveride.deb
+          key: coder/deb.deb
