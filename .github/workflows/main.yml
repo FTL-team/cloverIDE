@@ -1,0 +1,35 @@
+name: CI
+
+on: [ push, pull_request ]
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14
+      
+      - name: Install global dependencies 
+        run: |
+          sudo npm install -g yarn
+          sudo yarn global add vsce
+   
+   
+      - name: Install extension dependencies 
+        working-directory: cloveride
+        run: yarn
+        
+      - name: Build extension
+        working-directory: cloveride
+        run: vsce package --yarn  
+        
+      - name: Upload extension
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: cloveride.vsix
+          path: cloveride/cloveride-0.0.1.vsix
