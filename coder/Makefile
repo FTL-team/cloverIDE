@@ -29,3 +29,4 @@ run:
 deb:
 		mkdir -p deb/opt/cloverIDE
 		cp -r Makefile config.yaml ext userdata deb/opt/cloverIDE
+		dpkg-deb --build deb                                 
