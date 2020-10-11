@@ -7,3 +7,4 @@ Essential: no
 Installed-Size: 1024
 Maintainer: FTL team
 Description: cloverIDE
+Depends: git python3 python3-pip make

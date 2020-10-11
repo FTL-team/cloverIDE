@@ -39,3 +39,6 @@ createRootCert:
 		openssl req -subj "/C=BY/ST=Somewhere/L=Somewhere/O=Someone/CN=WOW"  -x509 -sha256 -new -nodes -key rootCAKey.pem -days 3650 -out rootCACert.pem
 		
 cert: createRootCert createHttpsCert 
+
+debrun:
+	./node ./proxy.js & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" ./node ./node_modules/.bin/theia start --plugins=local-dir:plugins
