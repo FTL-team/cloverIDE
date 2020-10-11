@@ -35,9 +35,13 @@ jobs:
           name: cloveride.vsix
           path: cloveride/cloveride-0.0.1.vsix
       
+      - name: Install cloveride dependencies
+        working-directory: coder
+        run: yarn
+
       - name: Build cloveride
         working-directory: coder
-        run: make build
+        run: yarn prepare
       
       - name: Build deb of cloveride
         working-directory: coder

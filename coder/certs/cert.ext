@@ -1,0 +1,11 @@
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = clover.local
+DNS.2 = clover-dev.local
+DNS.3 = localhost
+IP.1 = 127.0.0.1
+IP.2 = 192.168.11.1

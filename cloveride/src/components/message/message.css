@@ -3,15 +3,15 @@
 }
 
 .str {
-  color: var(--vscode-debugTokenExpression-string);
+  color: #ce9178;
 }
 
 .num {
-  color: var(--vscode-debugTokenExpression-number);
+  color: #b5cea8;
 }
 
 .bool {
-  color: var(--vscode-debugTokenExpression-boolean);
+  color: #4e94ce;
 }
 
 .root {

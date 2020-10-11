@@ -17,8 +17,16 @@ coder/userdata
 coder/machindeid
 coder/deb/opt
 coder/deb.deb
+coder/lib
+coder/src-gen
+coder/gen-webpack.config.js
+coder/plugins
+coder/ssl-proxy-linux-amd64
+coder/certs/*.pem
+coder/certs/*.key
+coder/certs/*.csr
+coder/certs/*.crt
+coder/certs/*.srl
 
 # Extension
 cloveride/out
-
-

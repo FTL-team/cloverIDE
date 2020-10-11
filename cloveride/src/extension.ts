@@ -10,21 +10,20 @@ interface UIPanelConfig {
 
 class UIPanel {
   private readonly cfg: UIPanelConfig
-  private readonly uiPath: vscode.Uri
+  private readonly uiPath: string
   private readonly panel: vscode.WebviewPanel
 
   private functions: { [a: string]: (...any: any[]) => void | Promise<any> }
 
   constructor(cfg: UIPanelConfig, context: vscode.ExtensionContext) {
     this.cfg = cfg
-    this.uiPath = vscode.Uri.joinPath(context.extensionUri, 'out', 'ui')
+    this.uiPath = 'vscode-resource:' + context.extensionPath + '/out/ui'
     this.panel = vscode.window.createWebviewPanel(
       cfg.type,
       cfg.name,
       vscode.ViewColumn.One,
       {
         enableScripts: true,
-        localResourceRoots: [this.uiPath],
         retainContextWhenHidden: true
       }
     )
@@ -93,8 +92,7 @@ class UIPanel {
   }
 
   private getWebviewContent() {
-    const scriptUri = vscode.Uri.joinPath(this.uiPath, this.cfg.script)
-    const scriptWebUri = this.panel.webview.asWebviewUri(scriptUri)
+    const script = this.uiPath + '/' + this.cfg.script
 
     return `<!DOCTYPE html>
     <html lang="en">
@@ -111,7 +109,7 @@ class UIPanel {
     <body>
         <div id="root"></div>
 
-        <script src="${scriptWebUri.toString()}"></script>
+        <script src="${script}"></script>
     </body>
     </html>`
   }
@@ -171,3 +169,4 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
   console.log('Deactivating')
 }
+
