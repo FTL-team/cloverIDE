@@ -16,6 +16,8 @@ jobs:
       
       - name: Install global dependencies 
         run: |
+          sudo apt update
+          sudo apt install librsvg2-bin
           sudo npm install -g yarn
           sudo yarn global add vsce
           curl -fsSL https://code-server.dev/install.sh | sh
