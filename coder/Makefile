@@ -3,7 +3,7 @@
 OUT_FILES=node_modules lib plugins src-gen package.json proxy.js Makefile
 NODE_URL=https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
 
-deb:
+deb: logo
 		mkdir -p deb/opt/cloverIDE
 		cp -r $(OUT_FILES) deb/opt/cloverIDE
 		mkdir -p deb/opt/cloverIDE/certs
@@ -19,7 +19,7 @@ deb:
 logo:
 		rsvg-convert ../logo.svg  -o logo.png --zoom 2
 		convert logo.png -crop 200x200+60+60 -resize 64x64 logo.ico
-		cp logo.ico code-server/src/browser/media/favicon.ico
+		cp logo.ico lib/favicon.ico
 		rm logo.ico logo.png
 
 .ONESHELL:
@@ -41,4 +41,4 @@ createRootCert:
 cert: createRootCert createHttpsCert 
 
 debrun:
-	./node ./proxy.js & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" node ./src-gen/backend/main.js --plugins=local-dir:plugins
+	./node ./proxy.js & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" ./node ./src-gen/backend/main.js --plugins=local-dir:plugins
