@@ -41,4 +41,4 @@ createRootCert:
 cert: createRootCert createHttpsCert 
 
 debrun:
-	./node ./proxy.js & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" ./node ./node_modules/.bin/theia start --plugins=local-dir:plugins
+	./node ./proxy.js & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" node ./src-gen/backend/main.js --plugins=local-dir:plugins
