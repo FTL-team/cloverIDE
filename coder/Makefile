@@ -1,18 +1,29 @@
 .PHONY: deb logo
 
-OUT_FILES=node_modules lib plugins src-gen package.json proxy.js Makefile
+OUT_FILES= \
+	node_modules/drivelist/build/Release/drivelist.node \
+	node_modules/nsfw/build/Release/nsfw.node \
+	node_modules/find-git-repositories/build/Release/findGitRepos.node \
+	node_modules/@theia/node-pty/build/Release/pty.node \
+	node_modules/oniguruma/build/Release/onig_scanner.node \
+	plugins \
+	package.json \
+	proxy \
+	main \
+	Makefile \
+
+
 NODE_URL=https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
 
+
 deb: logo
+		pkg -t node12-linux ./src-gen/backend/main.js
+		pkg -t node12-linux ./proxy.js
+
 		mkdir -p deb/opt/cloverIDE
 		cp -r $(OUT_FILES) deb/opt/cloverIDE
 		mkdir -p deb/opt/cloverIDE/certs
 		cp certs/cert.ext deb/opt/cloverIDE/certs
-
-		curl https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz -o node.tar.xz
-		tar -xvf node.tar.xz
-		cp node-v12.19.0-linux-x64/bin/node deb/opt/cloverIDE/
-		rm node-v12.19.0-linux-x66 node.tar.gz
 
 		dpkg-deb --build deb                                 
 
@@ -41,4 +52,4 @@ createRootCert:
 cert: createRootCert createHttpsCert 
 
 debrun:
-	./node ./proxy.js & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" ./node ./src-gen/backend/main.js --plugins=local-dir:plugins
+	./proxy & THEIA_WEBVIEW_EXTERNAL_ENDPOINT="{{hostname}}" ./main --plugins=local-dir:plugins

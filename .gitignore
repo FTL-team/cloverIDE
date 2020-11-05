@@ -21,6 +21,8 @@ coder/lib
 coder/src-gen
 coder/gen-webpack.config.js
 coder/plugins
+coder/main
+coder/proxy
 coder/ssl-proxy-linux-amd64
 coder/certs/*.pem
 coder/certs/*.key
