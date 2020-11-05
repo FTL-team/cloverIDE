@@ -17,8 +17,8 @@ NODE_URL=https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
 
 
 deb: logo
-		pkg -t node12-linux ./src-gen/backend/main.js
-		pkg -t node12-linux ./proxy.js
+		yarn pkg -t node12-linux ./src-gen/backend/main.js
+		yarn pkg -t node12-linux ./proxy.js
 
 		mkdir -p deb/opt/cloverIDE
 		cp -r $(OUT_FILES) deb/opt/cloverIDE
