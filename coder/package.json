@@ -20,7 +20,7 @@
     "@theia/search-in-workspace": "next",
     "@theia/terminal": "next",
     "http-proxy": "^1.18.1",
-    "pkg": "https://github.com/geekuillaume/pkg.git",
+    "pkg": "https://github.com/geekuillaume/pkg.git"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn build && yarn run download:plugins",
