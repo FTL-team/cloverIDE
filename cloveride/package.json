@@ -13,10 +13,30 @@
   "activationEvents": [
     "onCommand:cloveride.topicVis",
     "onCommand:cloveride.imageVis",
-    "onCommand:cloveride.serviceCaller"
+    "onCommand:cloveride.serviceCaller",
+    "onView:cloverTools"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "clover-tools",
+          "title": "Clover tools",
+          "icon": "media/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "clover-tools": [
+        {
+          "id": "cloverTools",
+          "name": "Clover tools",
+          "icon": "media/logo.svg",
+          "contextualTitle": "Clover tools"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "cloveride.topicVis",
