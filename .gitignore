@@ -31,4 +31,8 @@ ide/certs/*.crt
 ide/certs/*.srl
 
 # Extension
-cloverextension/out
+cloverExtension/out
+
+# idePlugins
+idePlugins/plugins
+idePlugins.zip

@@ -58,7 +58,8 @@
     "lint": "eslint src --ext ts",
     "watch": "webpack --watch --mode development",
     "pretest": "yarn run compile && yarn run lint",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package --yarn --out ../cloverExtension.vsix"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
