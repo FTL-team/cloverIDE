@@ -19,27 +19,26 @@ jobs:
           sudo apt install librsvg2-bin
           sudo npm install -g yarn
           sudo yarn global add vsce
-          curl -fsSL https://code-server.dev/install.sh | sh
 
       - name: Install extension dependencies
-        working-directory: cloverextension
+        working-directory: cloverExtension
         run: yarn
 
       - name: Build extension
-        working-directory: cloverextension
+        working-directory: cloverExtension
         run: vsce package --yarn
 
       - name: Upload extension
         uses: actions/upload-artifact@v2.2.0
         with:
           name: cloverextension.vsix
-          path: cloverextension/cloverextension-0.0.1.vsix
+          path: cloverExtension/cloverextension-0.0.1.vsix
 
-      - name: Install cloverextension dependencies
+      - name: Install ide dependencies
         working-directory: ide
         run: yarn
 
-      - name: Build cloverextension
+      - name: Build ide
         working-directory: ide
         run: yarn prepare
 
@@ -50,5 +49,5 @@ jobs:
       - name: Upload deb
         uses: actions/upload-artifact@v2.2.0
         with:
-          name: cloverextension.deb
+          name: cloverIDE.deb
           path: ide/deb.deb
