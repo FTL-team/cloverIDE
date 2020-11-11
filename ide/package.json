@@ -26,7 +26,7 @@
     "prepare": "yarn run clean && yarn build",
     "clean": "theia clean",
     "build": "theia build --mode production",
-    "start": "THEIA_WEBVIEW_EXTERNAL_ENDPOINT=\"{{hostname}}\" theia start --plugins=local-dir:plugins",
+    "start": "THEIA_WEBVIEW_EXTERNAL_ENDPOINT=\"{{hostname}}\" theia start --plugins=local-dir:plugins"
   },
   "devDependencies": {
     "@theia/cli": "next"
