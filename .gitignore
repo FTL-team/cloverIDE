@@ -29,6 +29,7 @@ ide/certs/*.key
 ide/certs/*.csr
 ide/certs/*.crt
 ide/certs/*.srl
+ide/out
 
 # Extension
 cloverExtension/out

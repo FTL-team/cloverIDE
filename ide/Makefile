@@ -6,32 +6,21 @@ OUT_FILES= \
 	node_modules/find-git-repositories/build/Release/findGitRepos.node \
 	node_modules/@theia/node-pty/build/Release/pty.node \
 	node_modules/oniguruma/build/Release/onig_scanner.node \
-	plugins \
 	package.json \
 	proxy \
 	main \
 	Makefile \
 
-
-NODE_URL=https://nodejs.org/dist/v12.19.0/node-v12.19.0-linux-x64.tar.xz
-
-
-deb: logo
+package: logo
+		rm -rf out
+		mkdir out
 		yarn pkg -t node12-linux ./src-gen/backend/main.js
 		yarn pkg -t node12-linux ./proxy.js
-
-		mkdir -p deb/opt/cloverextension
-		cp -r $(OUT_FILES) deb/opt/cloverextension
-		mkdir -p deb/opt/cloverextension/certs
-		cp certs/cert.ext deb/opt/cloverextension/certs
-
-		dpkg-deb --build deb                                 
+		cp $(OUT_FILES) out                               
 
 logo:
 		rsvg-convert ../logo.svg  -o logo.png --zoom 2
-		convert logo.png -crop 200x200+60+60 -resize 64x64 logo.ico
-		cp logo.ico lib/favicon.ico
-		rm logo.ico logo.png
+		convert logo.png -crop 200x200+60+60 -resize 64x64 lib/logo.ico
 
 .ONESHELL:
 createHttpsCert:
