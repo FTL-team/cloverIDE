@@ -50,7 +50,7 @@ jobs:
         run: yarn
 
       - name: Package
-        working-directory: cloverExtension
+        working-directory: ide
         run: | 
           make package
           zip ../ide.zip -r out
