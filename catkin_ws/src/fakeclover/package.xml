@@ -2,7 +2,7 @@
 <package format="2">
   <name>cloveremu</name>
   <version>0.0.0</version>
-  <description>Clover emulator</description>
+  <description>Fake clover, is special tool to create fake clover services, for debug clover ide</description>
 
   <maintainer email="mrom06@ya.ru">max</maintainer>
   <license>MIT</license>

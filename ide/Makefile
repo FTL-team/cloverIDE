@@ -20,10 +20,10 @@ deb: logo
 		yarn pkg -t node12-linux ./src-gen/backend/main.js
 		yarn pkg -t node12-linux ./proxy.js
 
-		mkdir -p deb/opt/cloverIDE
-		cp -r $(OUT_FILES) deb/opt/cloverIDE
-		mkdir -p deb/opt/cloverIDE/certs
-		cp certs/cert.ext deb/opt/cloverIDE/certs
+		mkdir -p deb/opt/cloverextension
+		cp -r $(OUT_FILES) deb/opt/cloverextension
+		mkdir -p deb/opt/cloverextension/certs
+		cp certs/cert.ext deb/opt/cloverextension/certs
 
 		dpkg-deb --build deb                                 
 

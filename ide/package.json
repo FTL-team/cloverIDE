@@ -27,7 +27,7 @@
     "clean": "theia clean",
     "build": "theia build --mode production",
     "start": "THEIA_WEBVIEW_EXTERNAL_ENDPOINT=\"{{hostname}}\" theia start --plugins=local-dir:plugins",
-    "download:plugins": "theia download:plugins && cp ../cloveride/cloveride-0.0.1.vsix ./plugins"
+    "download:plugins": "theia download:plugins && cp ../cloverextension/cloverextension-0.0.1.vsix ./plugins"
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {

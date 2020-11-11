@@ -11,24 +11,24 @@
 **/catkin_ws/.catkin_workspace
 **/catkin_ws/src/CMakeLists.txt
 
-# Coder
-coder/ext
-coder/userdata
-coder/machindeid
-coder/deb/opt
-coder/deb.deb
-coder/lib
-coder/src-gen
-coder/gen-webpack.config.js
-coder/plugins
-coder/main
-coder/proxy
-coder/ssl-proxy-linux-amd64
-coder/certs/*.pem
-coder/certs/*.key
-coder/certs/*.csr
-coder/certs/*.crt
-coder/certs/*.srl
+# ide
+ide/ext
+ide/userdata
+ide/machindeid
+ide/deb/opt
+ide/deb.deb
+ide/lib
+ide/src-gen
+ide/gen-webpack.config.js
+ide/plugins
+ide/main
+ide/proxy
+ide/ssl-proxy-linux-amd64
+ide/certs/*.pem
+ide/certs/*.key
+ide/certs/*.csr
+ide/certs/*.crt
+ide/certs/*.srl
 
 # Extension
-cloveride/out
+cloverextension/out
