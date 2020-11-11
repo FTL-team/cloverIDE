@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and package
         working-directory: cloverExtension
-        run: vsce package --yarn
+        run: yarn package
 
       - name: Upload extension
         uses: actions/upload-artifact@v2.2.0
