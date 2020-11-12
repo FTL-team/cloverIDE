@@ -101,5 +101,5 @@ jobs:
       - name: Upload deb
         uses: actions/upload-artifact@v2.2.0
         with:
-          name: advancedClover.dev
-          path: advancedClover.dev
+          name: advancedClover.deb
+          path: advancedClover.deb
