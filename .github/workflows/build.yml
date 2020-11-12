@@ -40,7 +40,7 @@ jobs:
         with:
           name: cloverExtension.vsix
       
-      - name: Install dependencies and build theia
+      - name: Download plugins
         working-directory: idePlugins
         run: python3 ./download.py
 
@@ -79,3 +79,27 @@ jobs:
         with:
           name: ide.zip
           path: ide.zip
+
+  package:
+    runs-on: ubuntu-latest
+    needs: [ide, plugins]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: ide.zip
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: idePlugins.zip
+      
+      - name: Download plugins
+        working-directory: package
+        run: make package
+
+      - name: Upload deb
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: advancedClover.dev
+          path: advancedClover.dev

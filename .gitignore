@@ -30,6 +30,7 @@ ide/certs/*.csr
 ide/certs/*.crt
 ide/certs/*.srl
 ide/out
+ide.zip
 
 # Extension
 cloverExtension/out
@@ -37,3 +38,8 @@ cloverExtension/out
 # idePlugins
 idePlugins/plugins
 idePlugins.zip
+
+# package
+package/deb/opt
+package/deb.deb
+advancedClover.deb
