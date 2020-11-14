@@ -39,6 +39,12 @@ cloverExtension/out
 idePlugins/plugins
 idePlugins.zip
 
+# ideHttps
+ideHttps/certs
+ideHttps/main
+ideHttps/ideHttps
+ideHttpsProxy
+
 # package
 package/deb/opt
 package/deb.deb
