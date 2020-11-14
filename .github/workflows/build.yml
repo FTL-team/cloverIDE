@@ -100,7 +100,7 @@ jobs:
 
   package:
     runs-on: ubuntu-latest
-    needs: [ide, plugins]
+    needs: [ide, plugins, ideHttps]
     steps:
       - uses: actions/checkout@v2
       
