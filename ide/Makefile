@@ -7,7 +7,6 @@ OUT_FILES= \
 	node_modules/@theia/node-pty/build/Release/pty.node \
 	node_modules/oniguruma/build/Release/onig_scanner.node \
 	package.json \
-	proxy \
 	main \
 	Makefile \
 
@@ -15,7 +14,6 @@ package: logo
 		rm -rf out
 		mkdir out
 		yarn pkg -t node12-linux ./src-gen/backend/main.js
-		yarn pkg -t node12-linux ./proxy.js
 		cp $(OUT_FILES) out                               
 
 logo:
