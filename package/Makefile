@@ -13,6 +13,8 @@ package:
 		mv $(IDE)/out/* $(IDE)
 		rm -rf $(IDE)/out
 
+		cp ../ideHttpsProxy $(IDE)
+
 		unzip -q ../idePlugins.zip -d $(IDE)
 
 		dpkg-deb --build deb

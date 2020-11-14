@@ -111,6 +111,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: idePlugins.zip
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: ideHttpsProxy
       
       - name: Download plugins
         working-directory: package
