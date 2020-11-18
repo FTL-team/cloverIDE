@@ -15,7 +15,7 @@ package: logo
 		rm -rf out
 		mkdir out
 		yarn pkg -t node12-linux ./src-gen/backend/main.js
-		cp $(OUT_FILES) out                               
+		cp -r $(OUT_FILES) out                               
 
 logo:
 		rsvg-convert ../logo.svg  -o logo.png --zoom 2
