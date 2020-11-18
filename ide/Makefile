@@ -7,6 +7,7 @@ OUT_FILES= \
 	node_modules/@theia/node-pty/build/Release/pty.node \
 	node_modules/oniguruma/build/Release/onig_scanner.node \
 	package.json \
+	lib \
 	main \
 	run.sh \
 

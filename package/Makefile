@@ -14,6 +14,7 @@ package:
 		rm -rf $(IDE)/out
 
 		cp ../ideHttpsProxy $(IDE)
+		chmod +x $(IDE)/ideHttpsProxy
 
 		unzip -q ../idePlugins.zip -d $(IDE)
 
