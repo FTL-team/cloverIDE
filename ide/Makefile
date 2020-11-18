@@ -14,7 +14,9 @@ OUT_FILES= \
 package: logo
 		rm -rf out
 		mkdir out
+		patch -p 0 < src.patch
 		yarn pkg -t node12-linux ./src-gen/backend/main.js
+		patch -p 0 -R < src.patch
 		cp -r $(OUT_FILES) out                               
 
 logo:
