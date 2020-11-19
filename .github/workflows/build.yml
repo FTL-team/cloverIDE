@@ -132,5 +132,5 @@ jobs:
   
   releaseAssets:
     if: ${{ github.event == "release" }}
-    run: 
+    steps: 
       - run: echo hello
