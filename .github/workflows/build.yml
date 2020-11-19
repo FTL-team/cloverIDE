@@ -1,6 +1,10 @@
 name: Build
 
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
+  release:
+    types: [created, edited, released]
 
 jobs:
   cloverExtension:
@@ -125,3 +129,8 @@ jobs:
         with:
           name: advancedClover.deb
           path: advancedClover.deb
+  
+  - name: releaseAssets
+    if: ${{ github.event == "release" }}
+    run: 
+      - run: echo hello
