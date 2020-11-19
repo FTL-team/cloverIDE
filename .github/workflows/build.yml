@@ -145,7 +145,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ github.event. }}
+          upload_url: ${{ github.event.upload_url }}
           asset_path: ./cloverExtension.vsix
           asset_name: cloverExtension.vsix
           asset_content_type: application/zip
