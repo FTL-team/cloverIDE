@@ -132,6 +132,9 @@ jobs:
   
   releaseAssets:
     runs-on: ubuntu-latest
-    if: ${{ github.event == 'release' }}
+    # if: ${{ github.event == 'release' }}
     steps: 
-      - run: echo hello
+      - name: test
+        env:
+          test: ${{ github.event }}
+        run: echo $test
