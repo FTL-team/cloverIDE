@@ -141,7 +141,7 @@ jobs:
       
       - name: run
         env: 
-          TEST: ${{ github.event.upload_url }}
+          TEST: ${{ toJSON(github.event) }}
         run: echo $TEST
       
       - name: Upload Release Asset
