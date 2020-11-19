@@ -135,11 +135,17 @@ jobs:
     if: ${{ github.event_name == 'release' }}
     needs: [cloverExtension]
     steps: 
-      - uses: actions/download-artifact@v2
+      - name: Download extension artifact 
+        uses: actions/download-artifact@v2
         with:
           name: cloverExtension.vsix
+        
+      - name: Download deb artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: advancedClover.deb
       
-      - name: Upload Release Asset
+      - name: Upload extension release asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
@@ -149,4 +155,15 @@ jobs:
           asset_path: ./cloverExtension.vsix
           asset_name: cloverExtension.vsix
           asset_content_type: application/zip
+
+      - name: Upload deb release asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./advancedClover.deb
+          asset_name: advancedClover.deb
+          asset_content_type: application/x-debian-package
       
