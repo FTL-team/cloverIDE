@@ -1,4 +1,4 @@
-Package: cloverIDE
+Package: cloverextension
 Version: 0.0.1
 Section: custom
 Priority: optional
@@ -6,5 +6,5 @@ Architecture: all
 Essential: no
 Installed-Size: 1024
 Maintainer: FTL team
-Description: cloverIDE
+Description: cloverextension
 Depends: git, python3, python3-pip, make

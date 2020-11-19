@@ -1,0 +1,167 @@
+name: Build
+
+on: 
+  push:
+  pull_request:
+  release:
+    types: [created, edited, released]
+
+jobs:
+  cloverExtension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 12
+
+      - name: Install global dependencies
+        run: |
+          sudo yarn global add vsce
+
+      - name: Install dependencies
+        working-directory: cloverExtension
+        run: yarn
+
+      - name: Build and package
+        working-directory: cloverExtension
+        run: yarn package
+
+      - name: Upload extension
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: cloverExtension.vsix
+          path: cloverExtension.vsix
+  
+  plugins:
+    runs-on: ubuntu-latest
+    needs: cloverExtension
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: cloverExtension.vsix
+      
+      - name: Download plugins
+        working-directory: idePlugins
+        run: python3 ./download.py
+
+      - name: Upload ide plugins
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: idePlugins.zip
+          path: idePlugins.zip
+
+  ide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 12
+
+      - name: Install global dependencies
+        run: |
+          sudo apt update
+          sudo apt install librsvg2-bin
+
+      - name: Install dependencies and build theia
+        working-directory: ide
+        run: yarn
+
+      - name: Package
+        working-directory: ide
+        run: | 
+          make package
+          zip ../ide.zip -r out
+
+      - name: Upload idea
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: ide.zip
+          path: ide.zip
+
+  ideHttps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.15' 
+
+      - name: Build ide https proxy
+        working-directory: ideHttps
+        run: make build
+
+      - name: Upload ide https proxy
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: ideHttpsProxy
+          path: ideHttpsProxy
+
+  package:
+    runs-on: ubuntu-latest
+    needs: [ide, plugins, ideHttps]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: ide.zip
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: idePlugins.zip
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: ideHttpsProxy
+      
+      - name: Download plugins
+        working-directory: package
+        run: make package
+
+      - name: Upload deb
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: advancedClover.deb
+          path: advancedClover.deb
+  
+  releaseAssets:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'release' }}
+    needs: [cloverExtension, package]
+    steps: 
+      - name: Download extension artifact 
+        uses: actions/download-artifact@v2
+        with:
+          name: cloverExtension.vsix
+        
+      - name: Download deb artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: advancedClover.deb
+      
+      - name: Upload extension release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./cloverExtension.vsix
+          asset_name: cloverExtension.vsix
+          asset_content_type: application/zip
+
+      - name: Upload deb release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./advancedClover.deb
+          asset_name: advancedClover.deb
+          asset_content_type: application/x-debian-package
+      

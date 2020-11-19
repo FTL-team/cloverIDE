@@ -12,20 +12,20 @@ export const tools: Tool[] = [
     script: 'topicVisView.js',
     description: 'Special tool to visualize in real-time any ros topic',
     viewType: 'topicVis',
-    command: 'cloveride.topicVis'
+    command: 'cloverextension.topicVis'
   },
   {
     name: 'Image topic visualization',
     script: 'imageVisView.js',
     description: 'Special tool to view image in real-time any ros topic',
     viewType: 'imageVis',
-    command: 'cloveride.imageVis'
+    command: 'cloverextension.imageVis'
   },
   {
     name: 'Service caller',
     script: 'serviceCallerView.js',
     description: 'Special tool to call ros services',
     viewType: 'serviceCaller',
-    command: 'cloveride.serviceCaller'
+    command: 'cloverextension.serviceCaller'
   }
 ]
