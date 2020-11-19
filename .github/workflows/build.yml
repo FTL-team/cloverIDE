@@ -131,6 +131,7 @@ jobs:
           path: advancedClover.deb
   
   releaseAssets:
-    if: ${{ github.event == "release" }}
+    runs-on: ubuntu-latest
+    if: ${{ github.event == 'release' }}
     steps: 
       - run: echo hello
