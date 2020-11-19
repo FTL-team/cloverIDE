@@ -133,7 +133,7 @@ jobs:
   releaseAssets:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'release' }}
-    needs: [cloverExtension]
+    needs: [cloverExtension, package]
     steps: 
       - name: Download extension artifact 
         uses: actions/download-artifact@v2
