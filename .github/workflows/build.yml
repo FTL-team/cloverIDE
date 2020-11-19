@@ -130,7 +130,7 @@ jobs:
           name: advancedClover.deb
           path: advancedClover.deb
   
-  - name: releaseAssets
+  releaseAssets:
     if: ${{ github.event == "release" }}
     run: 
       - run: echo hello
