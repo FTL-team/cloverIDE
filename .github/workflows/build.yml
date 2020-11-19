@@ -133,6 +133,20 @@ jobs:
   releaseAssets:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'release' }}
+    needs: [cloverExtension]
     steps: 
-      - name: test
-        run: echo TEST
+      - uses: actions/download-artifact@v2
+        with:
+          name: cloverExtension.vsix
+      
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event. }}
+          asset_path: ./cloverExtension.vsix
+          asset_name: cloverExtension.vsix
+          asset_content_type: application/zip
+      
