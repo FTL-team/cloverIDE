@@ -48,4 +48,5 @@ ideHttpsProxy
 # package
 package/deb/opt
 package/deb.deb
+package/deb/usr
 advancedClover.deb
