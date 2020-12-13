@@ -12,17 +12,16 @@ package:
 		rm -rf deb/usr
 		mkdir -p $(DIRS_CREATE)
 
-		# unzip ../ide.zip -d $(IDE)
-		# mv $(IDE)/out/* $(IDE)
-		# rm -rf $(IDE)/out
+		unzip ../ide.zip -d $(IDE)
+		mv $(IDE)/out/* $(IDE)
+		rm -rf $(IDE)/out
 
-		# cp ../ideHttpsProxy $(IDE)
-		# chmod +x $(IDE)/ideHttpsProxy
+		cp ../ideHttpsProxy $(IDE)
+		chmod +x $(IDE)/ideHttpsProxy
 
-		# unzip -q ../idePlugins.zip -d $(IDE)
-
+		unzip -q ../idePlugins.zip -d $(IDE)
 
 		cp -r ../pylib $(PY)/advancedClover
 
-		# dpkg-deb --build deb
-		# cp deb.deb ../advancedClover.deb  
+		dpkg-deb --build deb
+		cp deb.deb ../advancedClover.deb  
