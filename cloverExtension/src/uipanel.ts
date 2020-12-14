@@ -87,6 +87,11 @@ export class UIPanel {
     this.registerFunction('quickPick', async (items: string[]) => {
       return vscode.window.showQuickPick(items) as Promise<string | undefined>
     })
+
+
+    this.registerFunction('changeTitle', async (title: string) => {
+      this.panel.title = title
+    })
   }
 
   public registerFunction(

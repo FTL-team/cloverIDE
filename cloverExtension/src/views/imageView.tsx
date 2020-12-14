@@ -1,14 +1,17 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
 import ImageTopic from '../components/ImageTopic'
 import { getTopicsForType } from '../ros/topic'
 import '../common.css'
+import { changeTitle } from '../vscode'
 import { useVsState } from '../useVSState'
 
 function App() {
   const [topic, setTopic] = useVsState<null | string>(null)
-
+  useEffect(()=>{
+    changeTitle(topic ?? "Image topic visualization")
+  }, [topic])
   return (
     <>
       <Choose

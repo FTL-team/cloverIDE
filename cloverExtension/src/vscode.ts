@@ -35,4 +35,10 @@ export async function quickPick(items: string[]): Promise<[string] | [null]> {
   return (await call('quickPick', items)) as [string] | [null]
 }
 
+
+export async function changeTitle(title: string): Promise<void> {
+  console.log("TITLE CHANGES")
+  return call('changeTitle', title) as Promise<void>
+}
+
 export { vscode }

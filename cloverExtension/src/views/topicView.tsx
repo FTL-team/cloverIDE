@@ -1,13 +1,18 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
 import Topic from '../components/Topic'
 import { getTopics } from '../ros/topic'
 import '../common.css'
 import { useVsState } from '../useVSState'
+import { changeTitle } from '../vscode'
 
 function App() {
   const [topic, setTopic] = useVsState<null | string>(null)
+
+  useEffect(() => {
+    changeTitle(topic ?? 'Topic visualization')
+  }, [topic])
 
   return (
     <>
