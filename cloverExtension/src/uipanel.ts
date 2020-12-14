@@ -107,6 +107,7 @@ export class UIPanel {
     <body>
         <div id="root"></div>
 
+        <script src="${this.uiPath}/commons.js"></script>
         <script src="${script}"></script>
     </body>
     </html>`

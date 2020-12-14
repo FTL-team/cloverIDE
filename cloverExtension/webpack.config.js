@@ -39,6 +39,18 @@ module.exports = [
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.json'],
     },
+    optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2
+        }
+      }
+    }
+     
+   },
     module: {
       rules: [
         {
