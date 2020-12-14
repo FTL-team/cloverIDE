@@ -70,7 +70,7 @@ jobs:
 
       - name: Install dependencies and build theia
         working-directory: ide
-        run: yarn
+        run: yarn || yarn || yarn
 
       - name: Package
         working-directory: ide
