@@ -13,13 +13,8 @@ function App() {
       <Choose
         text="Service"
         value={service}
-        getVariants={async () => {
-          const services = await getServices()
-          return services
-        }}
-        onChange={(newService) => {
-          setService(newService)
-        }}
+        getVariants={async () => getServices()}
+        onChange={(newService) => setService(newService)}
       />
       <Suspense fallback={<h1>Loading...</h1>}>
         {service && <Service service={service} />}

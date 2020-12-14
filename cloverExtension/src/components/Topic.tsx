@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Message from './message/Message'
-import usePromise from 'react-promise-suspense'
-import { getTopic, Topic as RosTopic } from '../ros/topic'
+import { useTopic } from '../ros/hooks/topic'
 
 export default function Topic(props: { topic: string }) {
-  const [message, setMessage] = useState({})
-  const topic = usePromise(async (name) => getTopic(name), [
-    props.topic
-  ]) as RosTopic
+  const message = useTopic(props.topic)
 
-  useEffect(() => {
-    topic.subscribe((newMessage) => setMessage(newMessage))
-    return () => topic.unsubscribe()
-  }, [topic])
+  if (message === null) {
+    return <div>Waiting for message...</div>
+  }
 
   return <Message msg={message} />
 }

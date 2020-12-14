@@ -22,7 +22,7 @@ ros.on('close', function () {
 })
 
 const host =
-  process.env.NODE_ENV == 'development' ? 'localhost' : location.hostname
+  process.env.NODE_ENV === 'development' ? 'localhost' : location.hostname
 ros.connect(`ws://${host}:9090`)
 
 function rosPromisifyNoArgs<R>(
