@@ -1,0 +1,45 @@
+.ring {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+.ring:after {
+  content: ' ';
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 3px solid var(--vscode-focusBorder);
+  border-color: var(--vscode-focusBorder) transparent var(--vscode-focusBorder)
+    transparent;
+
+  animation: ringAnimation 1.2s linear infinite;
+}
+
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 100px;
+    height: 100px;
+}
+
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--vscode-sideBar-background);
+}
+
+@keyframes ringAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

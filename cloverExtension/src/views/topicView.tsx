@@ -6,6 +6,7 @@ import { getTopics } from '../ros/topic'
 import '../common.css'
 import { useVsState } from '../useVSState'
 import { changeTitle } from '../vscode'
+import GlobalLoader from '../components/loader/GlobalLoader'
 
 function App() {
   const [topic, setTopic] = useVsState<null | string>(null)
@@ -22,7 +23,7 @@ function App() {
         getVariants={async () => (await getTopics()).map((topic) => topic.name)}
         onChange={(newTopic) => setTopic(newTopic)}
       />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<GlobalLoader/>}>
         {topic && <Topic topic={topic} />}
       </Suspense>
     </>
@@ -30,7 +31,7 @@ function App() {
 }
 
 render(
-  <Suspense fallback={<h1>Loading...</h1>}>
+  <Suspense fallback={<GlobalLoader/ >}>
     <App />
   </Suspense>,
   document.querySelector('#root')

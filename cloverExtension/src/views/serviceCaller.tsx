@@ -6,6 +6,7 @@ import Service from '../components/Service'
 import '../common.css'
 import { useVsState } from '../useVSState'
 import { changeTitle } from '../vscode'
+import GlobalLoader from '../components/loader/GlobalLoader'
 
 function App() {
   const [service, setService] = useVsState<null | string>(null)
@@ -23,7 +24,7 @@ function App() {
         getVariants={async () => getServices()}
         onChange={(newService) => setService(newService)}
       />
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<GlobalLoader/>}>
         {service && <Service service={service} />}
       </Suspense>
     </>
