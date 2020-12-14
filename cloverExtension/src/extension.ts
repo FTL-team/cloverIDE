@@ -1,7 +1,7 @@
 /* eslint max-lines: ["error", 256] */
 
 import * as vscode from 'vscode'
-import { UIPanel } from './uipanel'
+import { UIPanel, UIPanleSerializer } from './uipanel'
 import { TreeCloverToolsProvider } from './tree'
 import { tools } from './tools'
 
@@ -17,6 +17,11 @@ export function activate(context: vscode.ExtensionContext) {
     )
 
     context.subscriptions.push(disposable)
+
+    vscode.window.registerWebviewPanelSerializer(
+      tool.viewType,
+      new UIPanleSerializer(tool, context)
+    )
   }
 }
 

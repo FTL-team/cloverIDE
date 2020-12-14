@@ -13,18 +13,25 @@ export class UIPanel {
 
   private functions: { [a: string]: (...any: any[]) => void | Promise<any> }
 
-  constructor(cfg: UIPanelConfig, context: vscode.ExtensionContext) {
+  constructor(
+    cfg: UIPanelConfig,
+    context: vscode.ExtensionContext,
+    panel?: vscode.WebviewPanel
+  ) {
     this.cfg = cfg
     this.uiPath = 'vscode-resource:' + context.extensionPath + '/out/ui'
-    this.panel = vscode.window.createWebviewPanel(
-      cfg.viewType,
-      cfg.name,
-      vscode.ViewColumn.One,
-      {
-        enableScripts: true,
-        retainContextWhenHidden: true
-      }
-    )
+
+    this.panel =
+      panel ??
+      vscode.window.createWebviewPanel(
+        cfg.viewType,
+        cfg.name,
+        vscode.ViewColumn.One,
+        {
+          enableScripts: true,
+          retainContextWhenHidden: true
+        }
+      )
 
     this.panel.webview.html = this.getWebviewContent()
 
@@ -111,5 +118,16 @@ export class UIPanel {
         <script src="${script}"></script>
     </body>
     </html>`
+  }
+}
+
+export class UIPanleSerializer implements vscode.WebviewPanelSerializer {
+  constructor(
+    private cfg: UIPanelConfig,
+    private context: vscode.ExtensionContext
+  ) {}
+  async deserializeWebviewPanel(panel: vscode.WebviewPanel, state: any) {
+    console.log(state)
+    new UIPanel(this.cfg, this.context, panel)
   }
 }

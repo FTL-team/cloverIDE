@@ -1,12 +1,13 @@
-import React, { useState, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
 import ImageTopic from '../components/ImageTopic'
 import { getTopicsForType } from '../ros/topic'
 import '../common.css'
+import { useVsState } from '../useVSState'
 
 function App() {
-  const [topic, setTopic] = useState<null | string>(null)
+  const [topic, setTopic] = useVsState<null | string>(null)
 
   return (
     <>

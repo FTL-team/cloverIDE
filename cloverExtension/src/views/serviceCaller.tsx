@@ -1,12 +1,13 @@
-import React, { useState, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
 import { getServices } from '../ros/service'
 import Service from '../components/Service'
 import '../common.css'
+import { useVsState } from '../useVSState'
 
 function App() {
-  const [service, setService] = useState<null | string>(null)
+  const [service, setService] = useVsState<null | string>(null)
 
   return (
     <>

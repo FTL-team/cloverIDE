@@ -14,6 +14,9 @@
     "onCommand:cloverextension.topicVis",
     "onCommand:cloverextension.imageVis",
     "onCommand:cloverextension.serviceCaller",
+    "onWebviewPanel:topicVis",
+    "onWebviewPanel:imageVis",
+    "onWebviewPanel:serviceCaller",
     "onView:cloverTools"
   ],
   "main": "./out/extension.js",
