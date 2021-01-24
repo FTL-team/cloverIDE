@@ -19,8 +19,7 @@
     "@theia/preview": "next",
     "@theia/search-in-workspace": "next",
     "@theia/terminal": "next",
-    "pkg": "https://github.com/geekuillaume/pkg.git",
-    "vscode-languageserver-protocol": "3.15.3"
+    "pkg": "https://github.com/geekuillaume/pkg.git"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn build",
