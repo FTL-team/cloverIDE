@@ -7,76 +7,86 @@ module.exports = [
     output: {
       path: path.resolve(__dirname, 'out'),
       filename: 'extension.js',
-      libraryTarget: 'commonjs2',
+      libraryTarget: 'commonjs2'
     },
     resolve: {
-      extensions: ['.js', '.ts', '.tsx', '.json'],
+      extensions: ['.js', '.ts', '.tsx', '.json']
     },
     externals: {
-      vscode: 'commonjs vscode',
+      vscode: 'commonjs vscode'
     },
     module: {
       rules: [
         {
           test: /\.(ts|tsx)$/,
           loader: 'ts-loader',
-          options: {},
-        },
-      ],
-    },
+          options: {}
+        }
+      ]
+    }
   },
   {
     entry: {
       topicVisView: './src/views/topicView.tsx',
       imageVisView: './src/views/imageView.tsx',
-      serviceCallerView: './src/views/serviceCaller.tsx',
+      serviceCallerView: './src/views/serviceCaller.tsx'
     },
     output: {
       path: path.resolve(__dirname, 'out', 'ui'),
-      filename: '[name].js',
+      filename: '[name].js'
     },
     devtool: 'eval-source-map',
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.json'],
+      alias: {
+        webworkify: 'webworkify-webpack'
+      }
     },
     optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          name: 'commons',
-          chunks: 'initial',
-          minChunks: 2
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            name: 'commons',
+            chunks: 'initial',
+            minChunks: 2
+          }
         }
       }
-    }
-     
-   },
+    },
+    externals: {
+      fs: '{}',
+      crypto: '{}',
+      path: '{}'
+    },
+    experiments: {
+      topLevelAwait: true
+    },
     module: {
       rules: [
         {
           test: /\.(ts|tsx)$/,
           loader: 'ts-loader',
-          options: {},
+          options: {}
         },
         {
           test: /\.css$/,
           use: [
             {
-              loader: 'style-loader',
+              loader: 'style-loader'
             },
             {
               loader: 'css-loader',
               options: {
-                modules: true,
-              },
-            },
-          ],
+                modules: true
+              }
+            }
+          ]
         },
         {
           test: /\.html$/i,
-          loader: 'html-loader',
-        },
-      ],
-    },
-  },
+          loader: 'html-loader'
+        }
+      ]
+    }
+  }
 ]

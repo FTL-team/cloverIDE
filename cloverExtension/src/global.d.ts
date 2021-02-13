@@ -7,3 +7,11 @@ declare module '*.css' {
   const classNames: IClassNames
   export = classNames
 }
+
+declare module 'react-promise-suspense' {
+  export default function usePromise<T>(
+    promise: (...inputs: any) => Promise<T>,
+    inputs: any[],
+    lifespan?: number
+  ): T
+}
