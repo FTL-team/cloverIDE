@@ -4,20 +4,16 @@
   "displayName": "CloverExtension",
   "description": "",
   "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.48.0"
-  },
-  "categories": [
-    "Other"
-  ],
+  "engines": { "vscode": "^1.48.0" },
+  "categories": ["Other"],
   "activationEvents": [
+    "onView:cloverTools",
     "onCommand:cloverextension.topicVis",
     "onCommand:cloverextension.imageVis",
     "onCommand:cloverextension.serviceCaller",
     "onWebviewPanel:topicVis",
     "onWebviewPanel:imageVis",
-    "onWebviewPanel:serviceCaller",
-    "onView:cloverTools"
+    "onWebviewPanel:serviceCaller"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -43,11 +39,11 @@
     "commands": [
       {
         "command": "cloverextension.topicVis",
-        "title": "Open topic visualisation"
+        "title": "Open topic visualization"
       },
       {
         "command": "cloverextension.imageVis",
-        "title": "Open image topic visualisation"
+        "title": "Open image topic visualization"
       },
       {
         "command": "cloverextension.serviceCaller",
@@ -78,6 +74,7 @@
     "vscode-test": "^1.4.0"
   },
   "dependencies": {
+    "@types/prettier": "^2.2.1",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "css-loader": "^4.2.2",
@@ -97,48 +94,27 @@
     "xo": "^0.33.1"
   },
   "xo": {
-    "extends": [
-      "xo-react",
-      "xo-typescript"
-    ],
+    "extends": ["xo-react", "xo-typescript"],
     "space": true,
     "semi": false,
     "prettier": true,
-    "env": [
-      "node",
-      "browser"
-    ],
+    "env": ["node", "browser"],
     "rules": {
       "import/no-unassigned-import": 0,
       "unicorn/filename-case": [
         "error",
-        {
-          "cases": {
-            "camelCase": true,
-            "pascalCase": true
-          }
-        }
+        { "cases": { "camelCase": true, "pascalCase": true } }
       ],
       "react/function-component-definition": [
         "error",
-        {
-          "namedComponents": "function-declaration"
-        }
+        { "namedComponents": "function-declaration" }
       ],
-      "@typescript-eslint/no-loop-func": [
-        0,
-        {}
-      ],
+      "@typescript-eslint/no-loop-func": [0, {}],
       "no-alert": 0,
       "react/prop-types": 0,
-      "max-lines": [
-        2,
-        128
-      ]
+      "max-lines": [2, 128]
     },
-    "ignore": [
-      "src/ros/roslib.d.ts"
-    ]
+    "ignore": ["src/ros/roslib.d.ts"]
   },
   "prettier": {
     "tabWidth": 2,
@@ -147,7 +123,5 @@
     "bracketSpacing": true,
     "trailingComma": "none"
   },
-  "repository": {
-    "url": "https://github.com/FTL-team/cloverextension"
-  }
+  "repository": { "url": "https://github.com/FTL-team/cloverextension" }
 }
