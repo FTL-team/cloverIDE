@@ -23,7 +23,7 @@ export class TreeCloverTool extends vscode.TreeItem {
     super(cfg.name, vscode.TreeItemCollapsibleState.None)
     this.tooltip = cfg.description
     this.command = {
-      command: cfg.command,
+      command: 'cloverextension.' + cfg.viewType,
       title: cfg.name
     }
   }

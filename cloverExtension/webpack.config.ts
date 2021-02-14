@@ -1,6 +1,20 @@
-const path = require('path')
+import * as path from 'path'
+import * as webpack from 'webpack'
+import { tools } from './src/tools'
 
-module.exports = [
+const viewEntries: { [key: string]: string } = {}
+
+tools.forEach((e) => {
+  viewEntries[e.viewType] = `./src/views/${e.viewType}.tsx`
+})
+
+const tsLoader = {
+  test: /\.(ts|tsx)$/,
+  loader: 'ts-loader',
+  options: {}
+}
+
+const config: webpack.Configuration[] = [
   {
     target: 'node',
     entry: './src/extension.ts',
@@ -16,21 +30,11 @@ module.exports = [
       vscode: 'commonjs vscode'
     },
     module: {
-      rules: [
-        {
-          test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {}
-        }
-      ]
+      rules: [tsLoader]
     }
   },
   {
-    entry: {
-      topicVisView: './src/views/topicView.tsx',
-      imageVisView: './src/views/imageView.tsx',
-      serviceCallerView: './src/views/serviceCaller.tsx'
-    },
+    entry: viewEntries,
     output: {
       path: path.resolve(__dirname, 'out', 'ui'),
       filename: '[name].js'
@@ -63,11 +67,7 @@ module.exports = [
     },
     module: {
       rules: [
-        {
-          test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {}
-        },
+        tsLoader,
         {
           test: /\.css$/,
           use: [
@@ -90,3 +90,5 @@ module.exports = [
     }
   }
 ]
+
+export default config
