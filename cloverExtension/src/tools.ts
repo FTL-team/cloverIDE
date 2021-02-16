@@ -19,5 +19,10 @@ export const tools: Tool[] = [
     name: 'Service caller',
     description: 'Special tool to call ros services',
     viewType: 'serviceCaller'
+  },
+  {
+    name: 'Copter status',
+    description: 'Page contans main info about copter (like QGroundControl)',
+    viewType: 'copterStatus'
   }
 ]

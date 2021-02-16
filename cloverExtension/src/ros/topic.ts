@@ -31,12 +31,13 @@ export async function getTopicType(topicName: string): Promise<string> {
   return rosGetTopicType(topicName)
 }
 
-export async function getTopic(topicName: string): Promise<RosTopic> {
+export async function getTopic(topicName: string, useCBOR = false): Promise<RosTopic> {
   const topicType = await getTopicType(topicName)
   return new RosTopic({
     ros,
     name: topicName,
-    messageType: topicType
+    messageType: topicType,
+    compression: useCBOR ? 'cbor' : undefined
   })
 }
 

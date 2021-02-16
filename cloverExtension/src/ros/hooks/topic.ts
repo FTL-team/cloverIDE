@@ -7,8 +7,8 @@ import {
   Topic as RosTopic,
 } from '../topic'
 
-export function useTopic(topicName: string) {
-  const topic = usePromise(getTopic, [topicName]) as RosTopic
+export function useTopic(topicName: string, useCBOR = false) {
+  const topic = usePromise(getTopic, [topicName, useCBOR]) as RosTopic
 
   const [message, setMessage] = useState<roslib.Message | null>(null)
   useEffect(() => {

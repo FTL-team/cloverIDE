@@ -43,7 +43,8 @@ const config: webpack.Configuration[] = [
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.json'],
       alias: {
-        webworkify: 'webworkify-webpack'
+        webworkify: 'webworkify-webpack',
+        '../util/cborTypedArrayTags': path.resolve(__dirname, 'roslibCBOR.js')
       }
     },
     optimization: {

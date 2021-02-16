@@ -11,9 +11,11 @@
     "onCommand:cloverextension.topicVis",
     "onCommand:cloverextension.imageVis",
     "onCommand:cloverextension.serviceCaller",
+    "onCommand:cloverextension.copterStatus",
     "onWebviewPanel:topicVis",
     "onWebviewPanel:imageVis",
-    "onWebviewPanel:serviceCaller"
+    "onWebviewPanel:serviceCaller",
+    "onWebviewPanel:copterStatus"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -48,6 +50,10 @@
       {
         "command": "cloverextension.serviceCaller",
         "title": "Open service caller"
+      },
+      {
+        "command": "cloverextension.copterStatus",
+        "title": "Open copter status"
       }
     ]
   },
