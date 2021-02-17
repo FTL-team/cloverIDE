@@ -1,4 +1,5 @@
 * [Главная](/)
-* [Установка](/install_ide)
-* [IDE](/usage)
-** [Инструменты ROS](/ros)
+* [Установка](/install)
+* [IDE](/ide/usage)
+** [Инструменты ROS](/ide/ros)
+* [Библиотека для python](/pylib)
