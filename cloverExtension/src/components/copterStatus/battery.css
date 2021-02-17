@@ -1,10 +1,15 @@
-.contain {
+.root {
+  display: flex;
+  font-size: 2em;
+}
+
+.inlineContainer {
   display: inline-block;
   margin-left: 10px;
   margin-right: 10px
 }
 
-.batteryContainer {
+.container {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -14,7 +19,7 @@
   align-items: center;
 }
 
-.batteryOuter {
+.outer {
   border-radius: 3px;
   border: 1px solid #fff;
   padding: 3px;
@@ -22,7 +27,7 @@
   height: 27px;
 }
 
-.batteryBump {
+.bump {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: #fff;
@@ -31,7 +36,7 @@
   height: 16px;
 }
 
-#batteryLevel {
+.level {
   border-radius: 2px;
   background-color: #73ad21;
   /* width: 54px; */

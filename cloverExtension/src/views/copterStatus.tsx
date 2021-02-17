@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
 import { render } from 'react-dom'
 import '../common.css'
-import battery from '../battery.css'
-import { Attitude } from '../components/Attitude'
+import { Battery } from '../components/copterStatus/Battery'
+import { Attitude } from '../components/copterStatus/Attitude'
+import { Text } from '../components/copterStatus/Text'
 import GlobalLoader from '../components/loader/GlobalLoader'
 import { useMav } from '../useMav'
 
@@ -21,33 +22,16 @@ function App() {
           display: 'flex'
         }}
       >
-        Mode: {state?.mode}{' '}
+        Mode: {state?.mode}
         <span style={{ color: state?.armed ? 'green' : 'red', marginLeft: 10 }}>
-          {" "}{state?.armed ? 'ARMED' : 'DISARMED'}
-        </span> 
+          {state?.armed ? 'ARMED' : 'DISARMED'}
+        </span>
       </div>
-      <div
-        style={{
-          fontSize: '2em',
-          display: 'flex'
-        }}
-      >
-        Battery:
-        <div className={battery.contain}>
-          <div className={battery.batteryContainer}>
-            <div className={battery.batteryOuter}>
-              <div
-                id={battery.batteryLevel}
-                style={{
-                  width: (75 * (mav.battery?.percentage ?? 0)) / 100
-                }}
-              ></div>
-            </div>
-            <div className={battery.batteryBump}></div>
-          </div>
-        </div>
-        {mav.battery?.total.toFixed(2) ?? 0}V
-      </div>
+
+      <Battery
+        percentage={mav.battery?.percentage ?? 50}
+        voltage={mav.battery?.total ?? 11.5}
+      />
 
       <br />
       <Attitude
@@ -56,15 +40,8 @@ function App() {
         pitch={-(mav.attitude?.pitch ?? 0)}
       />
 
-      <div
-        style={{
-          fontSize: '2em',
-          display: 'flex'
-        }}
-      >
-        Altitude: {mav.altitude?.toFixed(2)} M<br />
-        Ground speed: {mav.hud?.groundSpeed.toFixed(3) ?? '0'} M/s
-      </div>
+      <Text>Altitude: {mav.altitude?.toFixed(2)} M</Text>
+      <Text>Ground speed: {mav.hud?.groundSpeed.toFixed(3) ?? '0'} M/s</Text>
     </>
   )
 }
