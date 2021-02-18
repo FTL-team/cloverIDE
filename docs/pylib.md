@@ -51,6 +51,133 @@ __ImagePublisher__  - `debug.write(img)` - отправляет в топик, �
 
 ## Примеры кода
 
+Здесь собрано несколько примеров программ
+
+#### Полёт по точкам
 ```python
-print("Hello world!!!")
+import rospy
+import cv2
+from advancedClover import Clover
+from advancedClover.image import ImageSubscriber, ImagePublisher
+
+
+rospy.init_node("flight")
+
+clover = Clover(default_speed = 1, default_tolerance = 0.2)
+
+nav_aruco_map = clover.create_navigator('aruco_map')
+nav_body = clover.create_navigator('body')
+
+nav_body.navigate_wait(0, 0, 2, auto_arm = True)
+
+points = ((0, 7), (7, 7), (7, 0), (0, 0))
+
+for point in points:
+    nav_aruco_map.navigate_wait(point[0], point[1], 2)
+    rospy.sleep(1)
+
+print("Start landing")
+
+clover.land_wait()
+
+print("landed")
+```
+
+##### Важно
+Этот фрагмент кода:
+```python
+for point in points:
+    nav_aruco_map.navigate_wait(point[0], point[1], 2)
+    rospy.sleep(1)
+```
+можно заменить на:
+```python
+for point in points:
+    nav_aruco_map.navigate(point[0], point[1], 2)
+    while not clover.arrived():
+        print("Navigate to {}, {}".format(point[0], point[1]))
+    rospy.sleep(1)
+```
+
+Это бывает удобно если нужно делать какие-то действия в процессе полёта к точке
+
+
+#### Распознавание цветов
+
+```python
+import numpy
+
+######
+
+def process_image(img):
+    red = cv2.inRange(img, (0, 0, 180), (80,80,256))
+    green = cv2.inRange(img, (0, 180, 0), (80,256,80))
+    blue = cv2.inRange(img, (180, 0, 0), (256, 80, 80))
+    
+    red = np.sum(red) 
+    green = np.sum(green) 
+    blue = np.sum(blue) 
+
+    m = max(red, green, blue)
+    
+    if m < 128:
+        return "none"
+    if m == red:
+        return "red"
+    elif m == green:
+        return "green"
+    elif m == blue:
+        return "blue"
+
+```
+#### Работа с картинками
+
+Добавим в предыдущий код публикацию бинариризованных картинок для отладки
+```python
+import rospy
+import numpy as np
+import cv2
+from advancedClover import Clover
+from advancedClover.image import ImageSubscriber, ImagePublisher
+
+
+rospy.init_node("flight")
+
+clover = Clover(default_speed = 1, default_tolerance = 0.2)
+
+camera = ImageSubscriber("/main_camera/image_raw")
+red_img = ImagePublisher("/debug/red_color")
+green_img = ImagePublisher("/debug/green_color")
+blue_img = ImagePublisher("/debug/blue_color")
+
+def process_image(img):
+    red = cv2.inRange(img, (0, 0, 180), (80,80,256))
+    green = cv2.inRange(img, (0, 180, 0), (80,256,80))
+    blue = cv2.inRange(img, (180, 0, 0), (256, 80, 80))
+    
+    red_img.write(red)
+    green_img.write(green)
+    blue_img.write(blue)
+
+    red = np.sum(red) 
+    green = np.sum(green) 
+    blue = np.sum(blue) 
+
+    m = max(red, green, blue)
+    
+    if m < 128:
+        return "none"
+    if m == red:
+        return "red"
+    elif m == green:
+        return "green"
+    elif m == blue:
+        return "blue"
+
+for point in points:
+    nav_aruco_map.navigate(point[0], point[1], 2)
+    while not clover.arrived():
+        frame = camera.read()
+        print(process_image(frame))
+    rospy.sleep(2)
 ```
