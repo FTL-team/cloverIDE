@@ -2,7 +2,7 @@
 
 Для начала необходимо импротировать нужные библиотеки
 ```python
-import rospy_tutorials
+import rospy
 from advancedClover import Clover
 from advancedClover.image import ImageSubscriber, ImagePublisher
 ```
