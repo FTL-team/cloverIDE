@@ -1,0 +1,10 @@
+.root {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.attitude {
+  margin-bottom: 20px;
+}

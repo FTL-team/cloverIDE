@@ -4,8 +4,12 @@
   "displayName": "CloverExtension",
   "description": "",
   "version": "0.0.1",
-  "engines": { "vscode": "^1.48.0" },
-  "categories": ["Other"],
+  "engines": {
+    "vscode": "^1.48.0"
+  },
+  "categories": [
+    "Other"
+  ],
   "activationEvents": [
     "onView:cloverTools",
     "onCommand:cloverextension.topicVis",
@@ -94,6 +98,7 @@
     "react-promise-suspense": "^0.3.3",
     "roslib": "^1.1.0",
     "style-loader": "^1.2.1",
+    "svg-url-loader": "^7.1.1",
     "ts-loader": "^8.0.3",
     "ts-node": "^9.1.1",
     "webpack": "5",
@@ -102,27 +107,48 @@
     "xo": "^0.33.1"
   },
   "xo": {
-    "extends": ["xo-react", "xo-typescript"],
+    "extends": [
+      "xo-react",
+      "xo-typescript"
+    ],
     "space": true,
     "semi": false,
     "prettier": true,
-    "env": ["node", "browser"],
+    "env": [
+      "node",
+      "browser"
+    ],
     "rules": {
       "import/no-unassigned-import": 0,
       "unicorn/filename-case": [
         "error",
-        { "cases": { "camelCase": true, "pascalCase": true } }
+        {
+          "cases": {
+            "camelCase": true,
+            "pascalCase": true
+          }
+        }
       ],
       "react/function-component-definition": [
         "error",
-        { "namedComponents": "function-declaration" }
+        {
+          "namedComponents": "function-declaration"
+        }
       ],
-      "@typescript-eslint/no-loop-func": [0, {}],
+      "@typescript-eslint/no-loop-func": [
+        0,
+        {}
+      ],
       "no-alert": 0,
       "react/prop-types": 0,
-      "max-lines": [2, 128]
+      "max-lines": [
+        2,
+        128
+      ]
     },
-    "ignore": ["src/ros/roslib.d.ts"]
+    "ignore": [
+      "src/ros/roslib.d.ts"
+    ]
   },
   "prettier": {
     "tabWidth": 2,
@@ -131,5 +157,7 @@
     "bracketSpacing": true,
     "trailingComma": "none"
   },
-  "repository": { "url": "https://github.com/FTL-team/cloverextension" }
+  "repository": {
+    "url": "https://github.com/FTL-team/cloverextension"
+  }
 }

@@ -1,0 +1,36 @@
+.root {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #252526;
+  align-items: center;
+  padding-right: 30px;
+  flex-wrap: wrap;
+}
+
+.space {
+  width: 30px;
+}
+.hs {
+  height: 70px;
+}
+@media (min-width: 500px) {
+
+.hs {
+  height: 140px;
+}
+}
+
+.fs {
+  flex: 1;
+}
+
+.button {
+  text-align: center;
+  font-size: 1.1em;
+  padding-left: 5px;
+  min-width: 50px;
+  float: right;
+}

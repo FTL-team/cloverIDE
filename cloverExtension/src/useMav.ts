@@ -3,18 +3,18 @@ import usePromise from 'react-promise-suspense'
 import { RosJsMessage } from './ros/builtinTypes'
 import { getTopic, Topic as RosTopic } from './ros/topic'
 
-interface BatteryInfo {
+export interface BatteryInfo {
   cellsVoltage: number[]
   total: number
   percentage: number
 }
 
-interface HudInfo {
+export interface HudInfo {
   heading: number
   groundSpeed: number
 }
 
-interface AttitudeInfo {
+export interface AttitudeInfo {
   roll: number
   pitch: number
   yaw: number
