@@ -6,4 +6,4 @@
 - gitignore теперь игнорирует yarn-error.log и \_\_pycache\_\_
 - (cloverExtension) Использование CBOR в image viewer
 - (cloverExtension) Осовбождение памяти в image viewer
-- (cloverExtension) Добавлени компонент для просмотра информации о полёте (как в QGroundControl)
+- (cloverExtension) Добавлени компонент для просмотра информации о полёте а также выполнения простых действий (как в QGroundControl)
