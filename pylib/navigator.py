@@ -1,5 +1,3 @@
-from tf2transformer import Tf2Transformer
-
 class NavigationException(BaseException):
     pass
 
@@ -22,6 +20,3 @@ class Navigator:
 
     def telemetry(self):
         return self.clover.services.get_telemetry(self.frame_id)
-
-    def get_cords(self):
-        return self.clover.tf2transformer.transform_from_base(self.frame_id).transform.translation
