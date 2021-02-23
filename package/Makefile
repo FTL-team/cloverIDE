@@ -1,5 +1,5 @@
 ROOT = deb/opt/advancedClover
-PY = deb/usr/lib/python3/dist-packages
+PY = deb/usr/lib/python2.7/dist-packages
 IDE = $(ROOT)/ide
 
 DIRS_CREATE = \
@@ -22,6 +22,9 @@ package:
 		unzip -q ../idePlugins.zip -d $(IDE)
 
 		cp -r ../pylib $(PY)/advancedClover
+
+		mkdir $(IDE)/certs
+		chmod a+rw $(IDE)/certs
 
 		dpkg-deb --build deb
 		cp deb.deb ../advancedClover.deb  

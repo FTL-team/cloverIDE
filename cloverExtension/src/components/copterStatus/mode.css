@@ -1,0 +1,17 @@
+.root {
+  font-size: 2em;
+  display: flex;
+}
+
+.armed {
+  color: green;
+}
+
+.disarmed {
+  color: red;
+}
+
+.armed,
+.disarmed {
+  margin-left: 10px;  
+}

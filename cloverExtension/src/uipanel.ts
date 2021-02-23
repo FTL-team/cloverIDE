@@ -3,7 +3,6 @@ import * as vscode from 'vscode'
 export interface UIPanelConfig {
   name: string
   viewType: string
-  script: string
 }
 
 export class UIPanel {
@@ -88,7 +87,6 @@ export class UIPanel {
       return vscode.window.showQuickPick(items) as Promise<string | undefined>
     })
 
-
     this.registerFunction('changeTitle', async (title: string) => {
       this.panel.title = title
     })
@@ -102,7 +100,7 @@ export class UIPanel {
   }
 
   private getWebviewContent() {
-    const script = this.uiPath + '/' + this.cfg.script
+    const script = `${this.uiPath}/${this.cfg.viewType}.js`
 
     return `<!DOCTYPE html>
     <html lang="en">

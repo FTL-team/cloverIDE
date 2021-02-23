@@ -1,0 +1,12 @@
+.root {
+  width: 100%;
+  text-align: center
+}
+
+.title {
+  font-size: 1.3em;
+}
+
+.value {
+  font-size: 2em;
+}
