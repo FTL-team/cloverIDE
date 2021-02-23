@@ -3,3 +3,4 @@
 * [IDE](/ide/usage)
 ** [Инструменты ROS](/ide/ros)
 * [Библиотека для python](/pylib)
+* [Статус коптера](/copter_status)
