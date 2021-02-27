@@ -1,5 +1,10 @@
 package main
 
+
+// Magic https for advancedClover IDE
+// Version: 1.0.0
+
+
 import (
 	"bytes"
 	"crypto/rand"

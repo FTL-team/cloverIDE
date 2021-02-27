@@ -1,10 +1,10 @@
-Package: cloverextension
-Version: 0.0.1
+Package: advancedClover
+Version: 1.0.0
 Section: custom
 Priority: optional
 Architecture: all
 Essential: no
 Installed-Size: 1024
 Maintainer: FTL team
-Description: cloverextension
+Description: Very useful tools for clover development
 Depends: git, python3, python3-pip, make

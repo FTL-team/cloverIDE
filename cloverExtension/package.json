@@ -2,8 +2,8 @@
   "name": "cloverextension",
   "publisher": "maximmasterr",
   "displayName": "CloverExtension",
-  "description": "",
-  "version": "0.0.1",
+  "description": "Main extension for advancedClover",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.48.0"
   },

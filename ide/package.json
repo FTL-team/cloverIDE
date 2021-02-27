@@ -1,4 +1,6 @@
 {
+  "description": "AdvancedClover IDE for clover development",
+  "version": "1.0.0",
   "pkg": {
     "assets": [
       "lib/**/*"

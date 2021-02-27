@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>cloveremu</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>Fake clover, is special tool to create fake clover services, for debug clover ide</description>
 
   <maintainer email="mrom06@ya.ru">max</maintainer>

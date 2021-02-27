@@ -1,3 +1,6 @@
+# advancedClover PYLIB for simpler clover development
+# Version: 1.0.0
+
 import rospy
 import math
 from serviceProxies import ServiceProxies
