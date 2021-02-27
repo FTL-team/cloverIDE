@@ -1,8 +1,44 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { getCvConversion, getCvType } from '../ros/image'
+import { useTopic } from '../ros/hooks/topic'
+import { load as loadCv } from '../opencv'
 
-const host =
-  process.env.NODE_ENV === 'development' ? 'localhost' : location.hostname
+await loadCv()
+const cv = loadCv()
 
 export default function ImageTopic(props: { topic: string }) {
-  return <img src={`http://${host}:8080/stream?topic=${props.topic}`} />
+  const message = useTopic(props.topic, true)
+  const canvas = useRef<HTMLCanvasElement>(null)
+  useEffect(() => {
+    if (message != null) {
+      const arr = message.data
+      const mat = cv.matFromArray(
+        message.height,
+        message.width,
+        cv[getCvType(message.encoding as string)],
+        arr
+      )
+      cv.cvtColor(
+        mat,
+        mat,
+        cv[`COLOR_${getCvConversion(message.encoding as string)}2RGB`]
+      )
+      cv.imshow(canvas.current, mat)
+      mat.delete()
+    }
+  }, [message?.data])
+
+  if (message === null) {
+    return <div>Waiting for message...</div>
+  }
+
+  return (
+    <>
+      <canvas
+        width={message.width as number}
+        height={message.height as number}
+        ref={canvas}
+      ></canvas>
+    </>
+  )
 }

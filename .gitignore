@@ -2,6 +2,8 @@
 **/node_modules
 **/.vscode-test
 **/*.vsix
+**/yarn-error.log
+**/__pycache__
 **/package-lock.json
 
 # ROS

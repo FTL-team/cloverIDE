@@ -23,5 +23,11 @@ export const allBuiltinTypes = new Set([
 
 export type RosJsType = string | boolean | number
 export interface RosJsMessage {
-  [key: string]: RosJsType | RosJsMessage
+  [key: string]: RosJsType | RosJsMessage 
+}
+
+export interface Translation {
+  x: number
+  y: number
+  z: number
 }

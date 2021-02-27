@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
+    "module": "esnext",
+    "target": "es2017",
     "outDir": "out",
     "lib": ["es6", "dom"],
     "jsx": "react",
@@ -12,7 +12,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+      "moduleResolution": "node"
   },
   "exclude": [
     "node_modules",
@@ -22,6 +23,15 @@
     "**/ui/**/*",
     "**/ui/**/*",
     "*.md",
-    "out/**/*"
-  ]
+    "out/**/*",
+    "regeneratePJ.ts",
+    "webpack.config.ts"
+  ],
+
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "moduleResolution": "node"
+    }
+  }
 }

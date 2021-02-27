@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   for (const tool of tools) {
     const disposable = vscode.commands.registerCommand(
-      tool.command,
+      'cloverextension.' + tool.viewType,
       () => new UIPanel(tool, context)
     )
 
