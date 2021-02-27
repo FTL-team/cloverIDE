@@ -28,6 +28,8 @@ clover = Clover(default_speed = 0.5, default_tolerance = 0.2)
 #### Функции класса
  - `clover.arrived()` - вернёт True/False в зависимости от того, прибыл коптер в точку назначения или нет 
  - `clover.land_wait()` - выполняет посадку, ждёт её завершения
+ - `clover.land_atexit()` - в случае если код выходит с ошибкой(KeyboardInterrupt, DevisionByZero...), автоматически осуществляет посадку коптера
+ - `clover.disable_land_atexit()` - отключает автоматическую посадку коптера при неуспешном завершении программы
  - `nav = clover.create_navigator(frame_id)` создаёт экземпляр класса c заданным frame_id
  - `nav.navigate(x, y, z, auto_arm = False)` - лететь в заданную точку, аналогична функции navigate(), не дожидается прибытия
  - `nav.navigate_wait(x, y, z, auto_arm = True)` - лететь в заданную точку, аналогична функции navigate_wait(), дожидается прибытия
