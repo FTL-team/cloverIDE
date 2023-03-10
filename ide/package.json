@@ -1,6 +1,8 @@
 {
+  "name": "cloveride",
   "description": "AdvancedClover IDE for clover development",
   "version": "1.0.0",
+  "bin": "src-gen/backend/main.js",
   "pkg": {
     "assets": [
       "lib/**/*"
@@ -13,7 +15,6 @@
     "@theia/git": "next",
     "@theia/markers": "next",
     "@theia/messages": "next",
-    "@theia/mini-browser": "next",
     "@theia/navigator": "next",
     "@theia/outline-view": "next",
     "@theia/plugin-ext-vscode": "next",
@@ -21,15 +22,50 @@
     "@theia/preview": "next",
     "@theia/search-in-workspace": "next",
     "@theia/terminal": "next",
-    "pkg": "https://github.com/geekuillaume/pkg.git"
+    "@theia/vsx-registry": "next",
+    "@theia/monaco": "next",
+    "pkg": "5.8.1"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn build",
     "clean": "theia clean",
-    "build": "theia build --mode production",
-    "start": "THEIA_WEBVIEW_EXTERNAL_ENDPOINT=\"{{hostname}}\" theia start --plugins=local-dir:plugins"
+    "build": "theia build",
+    "start": "theia start",
+    "plugins": "theia download:plugins -p false",
+    "pkg": "pkg -t node18-linux-x64 package.json"
   },
   "devDependencies": {
     "@theia/cli": "next"
-  }
+  },
+  "theia": {
+    "target": "browser",
+    "frontend": {
+      "config": {
+        "applicationName": "Cloversim IDE",
+        "preferences": {
+          "workbench.iconTheme": "vscode-icons",
+          "workbench.colorTheme": "Default Dark+",
+          "security.workspace.trust.enabled": false,
+          "files.enableTrash": false
+        }
+      }
+    }
+  },
+  "theiaPlugins": {
+    "eclipse-theia.builtin-extension-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.66.2/file/eclipse-theia.builtin-extension-pack-1.66.2.vsix",
+    "vscode.markdown-language-features": "https://open-vsx.org/api/vscode/markdown-language-features/1.64.2/file/vscode.markdown-language-features-1.64.2.vsix",
+    "EditorConfig.EditorConfig": "https://open-vsx.org/api/EditorConfig/EditorConfig/0.14.4/file/EditorConfig.EditorConfig-0.14.4.vsix",
+    "vscode-redhat-xml": "https://open-vsx.org/api/redhat/vscode-xml/linux-x64/0.25.2023030703/file/redhat.vscode-xml-0.25.2023030703@linux-x64.vsix",
+    "vscode-dhj-xml": "https://open-vsx.org/api/DotJoshJohnson/xml/2.5.1/file/DotJoshJohnson.xml-2.5.1.vsix",
+    "llvm-vs-code-extensions.vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.23/file/llvm-vs-code-extensions.vscode-clangd-0.1.23.vsix",
+    "nick-rudenko.back-n-forth": "https://open-vsx.org/api/nick-rudenko/back-n-forth/3.1.1/file/nick-rudenko.back-n-forth-3.1.1.vsix",  
+    "vscode-icons-team.vscode-icons": "https://open-vsx.org/api/vscode-icons-team/vscode-icons/12.2.0/file/vscode-icons-team.vscode-icons-12.2.0.vsix",
+    "vscode-python": "https://open-vsx.org/api/ms-python/python/2022.16.1/file/ms-python.python-2022.16.1.vsix"
+  },
+  "theiaPluginsExcludeIds": [
+    "ms-python.vscode-pylance",
+    "ms-toolsai.jupyter",
+    "vscode.extension-editing",
+    "vscode.ipynb"
+  ]
 }

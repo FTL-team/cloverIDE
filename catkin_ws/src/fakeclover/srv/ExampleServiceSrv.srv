@@ -1,7 +1,0 @@
-cloveremu/IFBS ifbs_param
-int64 int_param
-
-----
-
-cloveremu/IFBS ifbs_return
-int64 num_return
