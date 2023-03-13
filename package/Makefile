@@ -1,18 +1,19 @@
-ROOT = deb/opt/advancedClover
-IDE = $(ROOT)/ide
+ROOT = deb/opt/cloverIde
 
 DIRS_CREATE = \
-	$(ROOT) \
-	$(IDE)
+	$(ROOT) 
 
 package:
 		rm -rf deb/opt
 		rm -rf deb/usr
-		mkdir -p $(DIRS_CREATE)
 
-		cp ../ide/cloveride $(IDE)
-		cp ../ide/node_modules/drivelist/build/Release/drivelist.node $(IDE)
-		cp -r ../ide/plugins $(IDE)
+		mkdir deb/opt/
+
+		cp -r ../ide $(ROOT)
+		cp ../cloverExtension.vsix $(ROOT)/plugins
+
+		mkdir -p deb/lib/systemd/system
+		cp ./cloveride.service deb/lib/systemd/system
 
 		dpkg-deb --build deb
 		cp deb.deb ../advancedClover.deb  

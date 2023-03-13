@@ -15,6 +15,7 @@
     "@theia/git": "next",
     "@theia/markers": "next",
     "@theia/messages": "next",
+    "@theia/monaco": "next",
     "@theia/navigator": "next",
     "@theia/outline-view": "next",
     "@theia/plugin-ext-vscode": "next",
@@ -22,9 +23,7 @@
     "@theia/preview": "next",
     "@theia/search-in-workspace": "next",
     "@theia/terminal": "next",
-    "@theia/vsx-registry": "next",
-    "@theia/monaco": "next",
-    "pkg": "5.8.1"
+    "@theia/vsx-registry": "next"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn build",
@@ -32,9 +31,10 @@
     "build": "theia build",
     "start": "theia start",
     "plugins": "theia download:plugins -p false",
-    "pkg": "pkg -t node18-linux-x64 package.json"
+    "getnode": "curl https://nodejs.org/dist/v18.15.0/node-v18.15.0-linux-x64.tar.xz | tar -xJv node-v18.15.0-linux-x64/bin/node -O > node && chmod +x ./node"
   },
   "devDependencies": {
+    "pkg": "5.8.1",
     "@theia/cli": "next"
   },
   "theia": {
@@ -46,7 +46,9 @@
           "workbench.iconTheme": "vscode-icons",
           "workbench.colorTheme": "Default Dark+",
           "security.workspace.trust.enabled": false,
-          "files.enableTrash": false
+          "files.enableTrash": false,
+          "editor.autoSave": "on",
+          "editor.autoClosingBrackets": "always"
         }
       }
     }
@@ -58,7 +60,7 @@
     "vscode-redhat-xml": "https://open-vsx.org/api/redhat/vscode-xml/linux-x64/0.25.2023030703/file/redhat.vscode-xml-0.25.2023030703@linux-x64.vsix",
     "vscode-dhj-xml": "https://open-vsx.org/api/DotJoshJohnson/xml/2.5.1/file/DotJoshJohnson.xml-2.5.1.vsix",
     "llvm-vs-code-extensions.vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.23/file/llvm-vs-code-extensions.vscode-clangd-0.1.23.vsix",
-    "nick-rudenko.back-n-forth": "https://open-vsx.org/api/nick-rudenko/back-n-forth/3.1.1/file/nick-rudenko.back-n-forth-3.1.1.vsix",  
+    "nick-rudenko.back-n-forth": "https://open-vsx.org/api/nick-rudenko/back-n-forth/3.1.1/file/nick-rudenko.back-n-forth-3.1.1.vsix",
     "vscode-icons-team.vscode-icons": "https://open-vsx.org/api/vscode-icons-team/vscode-icons/12.2.0/file/vscode-icons-team.vscode-icons-12.2.0.vsix",
     "vscode-python": "https://open-vsx.org/api/ms-python/python/2022.16.1/file/ms-python.python-2022.16.1.vsix"
   },

@@ -1,0 +1,10 @@
+[Unit]
+Description=CloverIDE
+
+[Service]
+ExecStart=/opt/cloverIde/run.sh
+User=clover
+WorkingDirectory=/opt/cloverIde
+
+[Install]
+WantedBy=multi-user.target

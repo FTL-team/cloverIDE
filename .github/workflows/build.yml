@@ -49,7 +49,9 @@ jobs:
 
       - name: Package ide
         working-directory: ide
-        run: yarn pkg
+        run: |
+          yarn getnode 
+          yarn install --production
 
       - name: Create deb
         working-directory: package
