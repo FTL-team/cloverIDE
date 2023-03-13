@@ -88,12 +88,9 @@ const config: webpack.Configuration[] = [
           loader: 'html-loader'
         },
         {
-          test: /\.svg/,
-          use: {
-            loader: 'svg-url-loader',
-            options: {}
-          }
-        }
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        },
       ]
     }
   }

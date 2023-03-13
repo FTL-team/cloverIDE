@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useEffect, useMemo } from 'react'
 import { render } from 'react-dom'
-import '../common.css'
+import '../common'
 import { Top } from '../components/copterStatus/Top'
 import { Main } from '../components/copterStatus/Main'
 import GlobalLoader from '../components/loader/GlobalLoader'
@@ -10,7 +10,7 @@ import { Dialog } from '../components/copterStatus/Dialog'
 import { copterActions } from '../copterActions'
 import { quickPick } from '../vscode'
 import { getTF, Transform } from '../ros/core'
-import { RosJsMessage, Translation } from '../ros/builtinTypes'
+import { LEDStateArray, RosJsMessage, Translation } from '../ros/builtinTypes'
 import { getTopic } from '../ros/topic'
 
 function App() {
@@ -25,6 +25,8 @@ function App() {
   const [cordFrame, setCordFrame] = useState<string>('map')
 
   const [distToNav, setDistToNav] = useState<number>(0)
+
+  const leds = useTopic("/led/state")
 
   useEffect(() => {
     const a: (a: Transform) => void = (t) =>
@@ -120,6 +122,7 @@ function App() {
           setPreparam(preparamI)
           setDis(act)
         }}
+        leds={leds as any as LEDStateArray}
       />
 
       <Main

@@ -36,9 +36,11 @@ export function Main({
           value={cordFrame}
           onChange={(a) => (a ? setCordFrame(a) : null)}
         />
-        <Value title="X" value={translation.x?.toFixed(3) ?? '???'} />
-        <Value title="Y" value={translation.y?.toFixed(3) ?? '???'} />
-        <Value title="Z" value={translation.z?.toFixed(3) ?? '???'} />
+        <div className={styles.cords}>
+          <Value title="X" value={translation.x} />
+          <Value title="Y" value={translation.y} />
+          <Value title="Z" value={translation.z} />
+        </div>
       </div>
       <div className={styles.attitude}>
         <Attitude
@@ -48,16 +50,13 @@ export function Main({
         />
         <Value
           title="Altitude (rel) (m)"
-          value={altitude?.toFixed(2) ?? '???'}
+          value={altitude}
         />
         <Value
           title="Ground speed (m/s)"
-          value={groundSpeed?.toFixed(3) ?? '???'}
+          value={groundSpeed}
         />
-        <Value
-          title="Distance to target (m)"
-          value={distToNav?.toFixed(3)}
-        />
+        <Value title="Distance to target (m)" value={distToNav} />
       </div>
     </div>
   )

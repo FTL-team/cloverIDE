@@ -31,3 +31,15 @@ export interface Translation {
   y: number
   z: number
 }
+
+export interface LEDState {
+  index: number
+  r: number
+  g: number
+  b: number
+}
+
+
+export interface LEDStateArray {
+  leds: LEDState[]
+}

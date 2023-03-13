@@ -4,9 +4,11 @@
 }
 
 .title {
-  font-size: 1.3em;
+  font-size: 1.2em;
 }
 
 .value {
-  font-size: 2em;
+  font-size: 1.6em;
+  font-family: monospace;
+  /* white-space: pre; */
 }

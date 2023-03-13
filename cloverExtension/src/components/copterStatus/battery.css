@@ -21,7 +21,8 @@
 
 .outer {
   border-radius: 3px;
-  border: 1px solid #fff;
+  background: #000;
+  border: 1px solid  var(--vscode-panel-dropBorder);;
   padding: 3px;
   width: 75px;
   height: 27px;
@@ -30,7 +31,7 @@
 .bump {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
-  background-color: #fff;
+  background-color:  var(--vscode-panel-dropBorder);;
   margin: 0px;
   width: 5px;
   height: 16px;
@@ -38,7 +39,15 @@
 
 .level {
   border-radius: 2px;
-  background-color: #73ad21;
-  /* width: 54px; */
+  background-color: #5d950f;
   height: 27px;
+  margin-top: -27px;
+}
+
+.voltage {
+  font-size: 20px;
+  height: 27px;
+  text-align: center;
+  color: #fff;
+  font-family: monospace;
 }

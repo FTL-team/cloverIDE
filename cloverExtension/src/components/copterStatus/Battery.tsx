@@ -13,6 +13,7 @@ export function Battery({
       <div className={styles.inlineContainer}>
         <div className={styles.container}>
           <div className={styles.outer}>
+            <div className={styles.voltage}>{voltage.toFixed(2)}V</div>
             <div
               className={styles.level}
               style={{
@@ -23,7 +24,6 @@ export function Battery({
           <div className={styles.bump}></div>
         </div>
       </div>
-      {voltage.toFixed(2)}V
     </div>
   )
 }

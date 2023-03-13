@@ -95,6 +95,8 @@ function getDraw(canvas: HTMLCanvasElement) {
   function draw(pitch: number, roll: number, yaw: number) {
     ctx.fillStyle = 'rgba(0,0,0,0)'
     ctx.fillRect(0, 0, 600, 600)
+    ctx.save()
+    ctx.scale(320 / 410, 320 / 410);
     ctx.translate(5, 5)
 
     drawBack()
@@ -106,7 +108,7 @@ function getDraw(canvas: HTMLCanvasElement) {
     drawArrow(yaw)
     drawEarth(roll, pitch)
 
-    ctx.translate(-5, -5)
+    ctx.restore()
   }
 
   return draw
@@ -131,5 +133,5 @@ export function Attitude({
     if (draw !== null) draw(roll, pitch, yaw)
   }, [yaw, pitch, roll])
 
-  return <canvas width="410" height="210" ref={canvas} />
+  return <canvas width="320" height="168" ref={canvas} />
 }

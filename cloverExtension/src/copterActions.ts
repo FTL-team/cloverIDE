@@ -6,9 +6,10 @@ import Arm from './media/Play.svg'
 import Disarm from './media/Stop.svg'
 import { RosJsMessage } from './ros/builtinTypes'
 import { getService } from './ros/service'
-
+import { FunctionComponent } from 'react'
+ 
 export interface CopterAction {
-  icon: string
+  icon: FunctionComponent
   name: string
   text: (preparam: string) => string
   run: (params: RosJsMessage, preparam: string) => void

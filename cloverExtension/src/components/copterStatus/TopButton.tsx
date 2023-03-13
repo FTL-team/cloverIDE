@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import styles from './top.css'
 
 export function TopButton({
-  icon,
+  icon: Icon,
   children,
   onClick
 }: {
-  icon: string
+  icon: FunctionComponent
   children: React.ReactNode
   onClick: () => void
 }) {
   return (
     <div className={styles.button} onClick={onClick}>
-      <img src={icon} width="32" height="32" />
+      <Icon />
       <br />
       {children}
     </div>

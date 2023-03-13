@@ -1,13 +1,22 @@
 .root {
-  display: flex;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background: #252526;
+  background: var(--vscode-editorGroupHeader-tabsBackground);
+}
+
+.tools {
+  display: flex;
+  background: var(--vscode-editorGroupHeader-tabsBackground);
   align-items: center;
   padding-right: 30px;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tools > * {
+  margin-top: 10px;
 }
 
 .space {
@@ -16,8 +25,7 @@
 .hs {
   height: 70px;
 }
-@media (min-width: 500px) {
-
+@media (max-width: 800px) {
 .hs {
   height: 140px;
 }
@@ -30,7 +38,7 @@
 .button {
   text-align: center;
   font-size: 1.1em;
-  padding-left: 5px;
   min-width: 50px;
   float: right;
+  width: 72px;
 }

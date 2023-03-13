@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { RosJsMessage } from '../../ros/builtinTypes'
 import Editor from '../message/Editor'
 import styles from './dialog.css'
+import { VSCodeButton } from '@vscode/webview-ui-toolkit/react';
 
 export function Dialog({
   text,
@@ -24,9 +25,9 @@ export function Dialog({
         <Editor msg={val} setMsg={setVal} />
         <div className={styles.sp} />
         <div className={styles.b}>
-          <button onClick={()=>onConfirm(val)}>Yes</button>
+          <VSCodeButton onClick={onCancel} appearance="secondary">No</VSCodeButton>
           <div className={styles.ss}></div>
-          <button onClick={onCancel}>No</button>
+          <VSCodeButton onClick={() => onConfirm(val)}>Yes</VSCodeButton>
         </div>
       </div>
     </div>

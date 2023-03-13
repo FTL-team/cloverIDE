@@ -84,10 +84,12 @@
     "vscode-test": "^1.4.0"
   },
   "dependencies": {
+    "@svgr/webpack": "^6.5.1",
     "@types/prettier": "^2.2.1",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/webpack": "^4.41.26",
+    "@vscode/webview-ui-toolkit": "^1.2.2",
     "css-loader": "^4.2.2",
     "eslint-config-xo-react": "^0.23.0",
     "eslint-config-xo-typescript": "^0.33.0",

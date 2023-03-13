@@ -1,20 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 72 72" style="enable-background:new 0 0 72 72;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-miterlimit:10;}
-	.st1{fill:none;stroke:#FFFFFF;stroke-width:8;stroke-miterlimit:10;}
-	.st2{fill:#FFFFFF;}
-</style>
-<path class="st0" d="M54.244,25.2c3.345,0,6.056,1.958,6.056,4.374v26.353c0,2.416-2.711,4.374-6.056,4.374H17.756
-	c-3.345,0-6.056-1.958-6.056-4.374V29.574c0-2.416,2.711-4.374,6.056-4.374"/>
-<g>
-	<g>
-		<line class="st1" x1="36" y1="56.546" x2="36" y2="31.554"/>
-		<g>
-			<polygon class="st2" points="49.962,35.639 36,11.461 22.038,35.639 			"/>
-		</g>
-	</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+<path fill="none" stroke-width="3" stroke-linecap="butt" stroke-linejoin="miter" stroke="currentcolor" stroke-opacity="1" stroke-miterlimit="10" d="M 54.246094 25.198242 C 57.585938 25.198242 60.301758 27.158203 60.301758 29.575195 L 60.301758 55.924805 C 60.301758 58.341797 57.585938 60.301758 54.246094 60.301758 L 17.753906 60.301758 C 14.414062 60.301758 11.698242 58.341797 11.698242 55.924805 L 11.698242 29.575195 C 11.698242 27.158203 14.414062 25.198242 17.753906 25.198242 " transform="matrix(0.444444, 0, 0, 0.444444, 0, 0)"/>
+<path fill="none" stroke-width="8" stroke-linecap="butt" stroke-linejoin="miter" stroke="currentcolor" stroke-opacity="1" stroke-miterlimit="10" d="M 36 56.548828 L 36 31.552734 " transform="matrix(0.444444, 0, 0, 0.444444, 0, 0)"/>
+<path fill-rule="nonzero" fill="currentcolor" fill-opacity="1" d="M 22.207031 15.839844 L 16 5.09375 L 9.792969 15.839844 Z M 22.207031 15.839844 "/>
 </svg>

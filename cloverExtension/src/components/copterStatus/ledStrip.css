@@ -1,0 +1,8 @@
+.root {
+  height: 8px;
+  display: flex;
+}
+
+.led {
+  flex: 1;
+}

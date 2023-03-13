@@ -1,10 +1,15 @@
 .root {
   display: flex;
   flex-wrap: wrap-reverse;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: start;
 }
 
 .attitude {
   margin-bottom: 20px;
+}
+
+.cords {
+  display: flex;
+  justify-content: space-around;
 }
