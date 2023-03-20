@@ -42,8 +42,6 @@ export function Top({
         </div>
         <LedStrip leds={leds} />
       </div>
-
-      <div className={styles.hs} />
     </>
   )
 }

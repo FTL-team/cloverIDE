@@ -22,7 +22,7 @@
 .outer {
   border-radius: 3px;
   background: #000;
-  border: 1px solid  var(--vscode-panel-dropBorder);;
+  border: 1px solid  var(--vscode-panelTitle-activeBorder);
   padding: 3px;
   width: 75px;
   height: 27px;
@@ -31,7 +31,7 @@
 .bump {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
-  background-color:  var(--vscode-panel-dropBorder);;
+  background-color:  var(--vscode-panelTitle-activeBorder);
   margin: 0px;
   width: 5px;
   height: 16px;

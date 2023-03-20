@@ -122,7 +122,7 @@ function App() {
           setPreparam(preparamI)
           setDis(act)
         }}
-        leds={leds as any as LEDStateArray}
+        leds={(leds as any) as LEDStateArray}
       />
 
       <Main

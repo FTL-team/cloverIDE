@@ -1,9 +1,10 @@
 .root {
   width: 100%;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   background: var(--vscode-editorGroupHeader-tabsBackground);
+  margin-bottom: 20px;
 }
 
 .tools {
