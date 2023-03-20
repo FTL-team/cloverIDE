@@ -39,6 +39,7 @@
   },
   "theia": {
     "target": "browser",
+    "warnOnPotentiallyInsecureHostPattern": false,
     "frontend": {
       "config": {
         "applicationName": "Cloversim IDE",
@@ -57,7 +58,6 @@
     "eclipse-theia.builtin-extension-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.66.2/file/eclipse-theia.builtin-extension-pack-1.66.2.vsix",
     "vscode.markdown-language-features": "https://open-vsx.org/api/vscode/markdown-language-features/1.64.2/file/vscode.markdown-language-features-1.64.2.vsix",
     "EditorConfig.EditorConfig": "https://open-vsx.org/api/EditorConfig/EditorConfig/0.14.4/file/EditorConfig.EditorConfig-0.14.4.vsix",
-    "vscode-redhat-xml": "https://open-vsx.org/api/redhat/vscode-xml/linux-x64/0.25.2023030703/file/redhat.vscode-xml-0.25.2023030703@linux-x64.vsix",
     "vscode-dhj-xml": "https://open-vsx.org/api/DotJoshJohnson/xml/2.5.1/file/DotJoshJohnson.xml-2.5.1.vsix",
     "llvm-vs-code-extensions.vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.23/file/llvm-vs-code-extensions.vscode-clangd-0.1.23.vsix",
     "nick-rudenko.back-n-forth": "https://open-vsx.org/api/nick-rudenko/back-n-forth/3.1.1/file/nick-rudenko.back-n-forth-3.1.1.vsix",
