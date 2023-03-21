@@ -39,7 +39,8 @@ const config: webpack.Configuration[] = [
       path: path.resolve(__dirname, 'out', 'ui'),
       filename: '[name].js'
     },
-    devtool: 'eval-source-map',
+    devtool:
+      process.env.NODE_ENV === 'development' ? 'eval-source-map' : undefined,
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.json'],
       alias: {
@@ -89,8 +90,8 @@ const config: webpack.Configuration[] = [
         },
         {
           test: /\.svg$/,
-          use: ['@svgr/webpack'],
-        },
+          use: ['@svgr/webpack']
+        }
       ]
     }
   }

@@ -31,4 +31,8 @@ function App() {
   )
 }
 
-render(<App />, document.querySelector('#root'))
+let el = document.querySelector<HTMLDivElement>('#root')
+if (el) {
+  render(<App />, el)
+  el.style.padding = '10px'
+}

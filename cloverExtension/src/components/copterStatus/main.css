@@ -13,3 +13,11 @@
   display: flex;
   justify-content: space-around;
 }
+
+.fallbackImage {
+  width: 320px;
+  height: 240px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
