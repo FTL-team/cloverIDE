@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 source /etc/profile
 source ~/.bashrc
 cd "$(dirname "$0")"

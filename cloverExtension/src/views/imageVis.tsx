@@ -1,17 +1,19 @@
-import React, { Suspense, useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { render } from 'react-dom'
 import Choose from '../components/Choose'
-import ImageTopic from '../components/ImageTopic'
+// import ImageTopic from '../components/ImageTopic'
 import { getTopicsForType } from '../ros/topic'
 import '../common'
 import { changeTitle } from '../vscode'
 import { useVsState } from '../useVSState'
 import GlobalLoader from '../components/loader/GlobalLoader'
 
+const ImageTopic = lazy(() => import('../components/ImageTopic'))
+
 function App() {
   const [topic, setTopic] = useVsState<null | string>(null)
-  useEffect(()=>{
-    changeTitle(topic ?? "Image topic visualization")
+  useEffect(() => {
+    changeTitle(topic ?? 'Image topic visualization')
   }, [topic])
   return (
     <>
@@ -25,14 +27,15 @@ function App() {
         }
         onChange={(newTopic) => setTopic(newTopic)}
       />
-      {topic && <ImageTopic topic={topic} />}
+      <Suspense fallback={<GlobalLoader />}>
+        {topic && <ImageTopic topic={topic} />}
+      </Suspense>
     </>
   )
 }
 
-render(
-  <Suspense fallback={<GlobalLoader />}>
-    <App />
-  </Suspense>,
-  document.querySelector('#root')
-)
+let el = document.querySelector<HTMLDivElement>('#root')
+if (el) {
+  render(<App />, el)
+  el.style.padding = '10px'
+}

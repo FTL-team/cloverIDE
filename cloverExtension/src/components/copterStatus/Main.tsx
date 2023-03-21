@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Attitude } from './Attitude'
 import { Value } from './Value'
-import ImageTopic from '../ImageTopic'
 import { AttitudeInfo } from '../../useMav'
 import styles from './main.css'
 import { Translation } from '../../ros/builtinTypes'
 import Choose from '../Choose'
+import Loader from '../loader/Loader'
+
+const ImageTopic = lazy(() => import('../ImageTopic'))
 
 export function Main({
   attitude,
@@ -22,14 +24,22 @@ export function Main({
   altitude: number | null | undefined
   translation: Translation
   frames: string[]
-  cordFrame: string, 
+  cordFrame: string
   distToNav: number
-  setCordFrame: (n: string)=>void
+  setCordFrame: (n: string) => void
 }) {
   return (
     <div className={styles.root}>
       <div className={styles.altitude}>
-        <ImageTopic topic="/main_camera/image_raw" />
+        <Suspense
+          fallback={
+            <div className={styles.fallbackImage}>
+              <Loader />
+            </div>
+          }
+        >
+          <ImageTopic topic="/main_camera/image_raw" />
+        </Suspense>
         <Choose
           getVariants={() => frames}
           text="Frame"
@@ -48,14 +58,8 @@ export function Main({
           roll={-attitude.roll}
           pitch={-attitude.pitch}
         />
-        <Value
-          title="Altitude (rel) (m)"
-          value={altitude}
-        />
-        <Value
-          title="Ground speed (m/s)"
-          value={groundSpeed}
-        />
+        <Value title="Altitude (rel) (m)" value={altitude} />
+        <Value title="Ground speed (m/s)" value={groundSpeed} />
         <Value title="Distance to target (m)" value={distToNav} />
       </div>
     </div>
