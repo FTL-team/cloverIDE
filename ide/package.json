@@ -40,6 +40,7 @@
   "theia": {
     "target": "browser",
     "frontend": {
+      "warnOnPotentiallyInsecureHostPattern": false,
       "config": {
         "applicationName": "Cloversim IDE",
         "warnOnPotentiallyInsecureHostPattern": false,
